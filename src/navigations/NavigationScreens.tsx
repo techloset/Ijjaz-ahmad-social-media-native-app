@@ -6,13 +6,14 @@ import EditProfile from "../screens/frontend/editProfile/EditProfile";
 import Home from "../screens/frontend/home/Home";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Profile from "../screens/frontend/profile/Profile";
-import { HomeHover, HomeIcon, ProfileIcon, SmallLogo, UploadHover, UploadIcon } from "../constants/Images";
-import { navStyles } from './NavigationStyle'
+import { HomeHover, HomeIcon, SmallLogo, UploadHover, UploadIcon } from "../constants/Images";
 import ProfileSelf from "../screens/frontend/profileSelf/ProfileSelf";
 import UploadPost from "../screens/frontend/uploadPost/UploadPost";
 import { Image } from "react-native";
-import { useAuthContext } from "../context/AuthContext";
 import { Colors } from "../constants/Colors";
+import { useSelector } from "react-redux";
+import { RootState } from "../store/Store";
+import { styles } from "../constants/GlobalStyle";
 
 export const AUTH_STACK_NAVIGATION_SCREENS = [
   { name: AUTH_STACK_SCREEN.LOGIN, component: Login },
@@ -27,8 +28,7 @@ export const STACK_NAVIGATION_SCREENS = [
 const Tab = createBottomTabNavigator();
 function MyTabs() {
   const { HOME, UPLOAD_POST, PROFILE_SELF } = BOTTOM_TAB_SCREEN;
-  const { user } = useAuthContext();
-
+  const user = useSelector((state: RootState) => state.auth.user);
   return (
     <Tab.Navigator
       screenOptions={({}) => ({
@@ -65,9 +65,9 @@ function MyTabs() {
         options={{
           headerShadowVisible: false,
           title: '',
-          headerTitle:"jacob_w",
+          headerTitle:`${user?.username}`,
           headerTitleAlign: 'center',
-          headerTitleStyle: navStyles.titleStyle,
+          headerTitleStyle:[styles.fontWeightXl,styles.fontXxl,styles.SpacingExSm,{color:Colors.textclr}],
           tabBarIcon: ({  focused  }) => (
             <Image source={{uri:user.profileImage}} style={{width:27, height:27,borderWidth:1, borderRadius:100 ,borderColor: focused ?Colors.textclr :Colors.lineColor ,}}/>
           ),

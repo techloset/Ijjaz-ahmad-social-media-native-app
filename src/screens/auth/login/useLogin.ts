@@ -7,7 +7,7 @@ import {
   statusCodes,
 } from '@react-native-google-signin/google-signin';
 import {notify} from '../../../constants/GlobalStyle';
-import {useAuthContext} from '../../../context/AuthContext';
+import {useDispatch} from 'react-redux';
 const initialState = {email: '', password: ''};
 interface UserData {
   user?: {
@@ -18,8 +18,7 @@ const useLogin = () => {
   const [loading, setisloading] = useState(false);
   const [state, setState] = useState(initialState);
   const [userinfo, setUserInfo] = useState<UserData | null>(null);
-  const {dispatch} = useAuthContext();
-
+  const dispatch = useDispatch();
   const handleChange = (name: string, value: string): void => {
     setState(s => ({...s, [name]: value}));
   };

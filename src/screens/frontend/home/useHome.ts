@@ -1,14 +1,14 @@
 import {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {rootStatePost} from '../../../constants/AllTypes';
-import {AppDispatch} from '../../../store/store';
-import {useAuthContext} from '../../../context/AuthContext';
+import {AppDispatch, RootState} from '../../../store/store';
 import {fetchUsersData} from '../../../store/slices/usersData';
 export default function useHome() {
-  const {user} = useAuthContext();
+  const user = useSelector((state: RootState) => state.auth.user);
   const usersData = useSelector(
     (state: rootStatePost) => state.usersData.usersData,
   );
+  
   const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
     dispatch(fetchUsersData());

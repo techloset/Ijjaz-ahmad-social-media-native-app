@@ -27,7 +27,7 @@ export default function Signup({ navigation }: routeProps) {
           <TextInput
             style={styles.formControl}
             placeholder='Email'
-             placeholderTextColor={Colors.lineColor}
+            placeholderTextColor={Colors.lineColor}
             keyboardType='email-address'
             value={state.email}
             onChangeText={(value: string) => handleChange("email", value)}
@@ -35,7 +35,7 @@ export default function Signup({ navigation }: routeProps) {
           <TextInput
             style={styles.formControl}
             placeholder='Password'
-             placeholderTextColor={Colors.lineColor}
+            placeholderTextColor={Colors.lineColor}
             value={state.password}
             secureTextEntry
             onChangeText={(value: string) => handleChange("password", value)}
@@ -43,7 +43,7 @@ export default function Signup({ navigation }: routeProps) {
           <TextInput
             style={styles.formControl}
             placeholder='Confirm Password'
-             placeholderTextColor={Colors.lineColor}
+            placeholderTextColor={Colors.lineColor}
             value={state.confirmPassword}
             secureTextEntry
             onChangeText={(value: string) => handleChange("confirmPassword", value)}

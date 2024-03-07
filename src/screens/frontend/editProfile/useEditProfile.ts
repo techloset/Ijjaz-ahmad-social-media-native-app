@@ -1,23 +1,27 @@
 import {useEffect, useState} from 'react';
 import firestore from '@react-native-firebase/firestore';
 import {notify} from '../../../constants/GlobalStyle';
-import {useAuthContext} from '../../../context/AuthContext';
 import storage from '@react-native-firebase/storage';
 import {FIRE_BASE_COLLECTION} from '../../../constants/Collections';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
-const initialState = {
-  name: '',
-  username: '',
-  website: '',
+import {useSelector} from 'react-redux';
+import {RootState} from '../../../store/Store';
+import {userType} from '../../../constants/AllTypes';
+const initialState: userType = {
   bio: '',
   email: '',
-  phone: '',
   gender: '',
+  name: '',
+  phone: '',
   profileImage: '',
+  role: '',
+  status: '',
+  username: '',
+  website: '',
 };
 
 export default function useEditProfile() {
-  const {user} = useAuthContext();
+  const user = useSelector((state: RootState) => state.auth.user);
   const [loading, setLoading] = useState(false);
   const [state, setState] = useState(initialState);
   const [isModalVisible, setModalVisible] = useState(false);
@@ -36,7 +40,7 @@ export default function useEditProfile() {
     state.phone = phone;
     state.gender = gender;
     state.profileImage = profileImage;
-  }, [user]);
+  }, []);
 
   const handleChange = (name: string, value: string): void => {
     setState(s => ({...s, [name]: value}));
@@ -91,11 +95,12 @@ export default function useEditProfile() {
       const childPath = `/profile/${user.uid}/profileImage.${Type}`;
       const reference = storage().ref().child(childPath);
       await reference.putFile(uriPath);
-      const URL = await reference.getDownloadURL();
+      const URL: string = await reference.getDownloadURL();
       notify('success', 'image uploaded', 'success');
       return URL;
     } catch (err) {
       notify('error', 'Post upload failed', 'error');
+      return '';
     } finally {
       setLoading(false);
     }
@@ -124,18 +129,27 @@ export default function useEditProfile() {
 
   const handleSubmite = async () => {
     setFocusedText('done');
-    const profileImg = await uploadFile();
-    state.profileImage = profileImg;
     try {
+      var profileImg = '';
+      if (image !== '') {
+        profileImg = await uploadFile();
+      }
+
+      if (profileImg === '') {
+        state.profileImage = user.profileImage;
+      } else {
+        state.profileImage = profileImg;
+      }
       await firestore()
         .collection(FIRE_BASE_COLLECTION.USERS)
         .doc(user.uid)
         .update(state);
       notify('Success', 'Profile successfully updated!', 'success');
     } catch (error) {
-      notify('error', 'Error updating profile', 'success');
+      notify('Error', 'Error updating profile', 'error');
     }
   };
+
   return {
     user,
     loading,

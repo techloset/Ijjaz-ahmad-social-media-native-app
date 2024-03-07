@@ -4,10 +4,9 @@ import storage from '@react-native-firebase/storage';
 import firestore, {firebase} from '@react-native-firebase/firestore';
 import {notify} from '../../../constants/GlobalStyle';
 import {FIRE_BASE_COLLECTION} from '../../../constants/Collections';
-import {useAuthContext} from '../../../context/AuthContext';
 import {fetchPost} from '../../../store/slices/postSlice';
-import {useDispatch} from 'react-redux';
-import {AppDispatch} from '../../../store/store';
+import {useDispatch, useSelector} from 'react-redux';
+import {AppDispatch, RootState} from '../../../store/store';
 const initialState = {description: ''};
 export default function useUploadPost() {
   const [isModalVisible, setModalVisible] = useState(false);
@@ -17,7 +16,7 @@ export default function useUploadPost() {
   const [loading, setLoading] = useState(false);
   const [state, setState] = useState(initialState);
   const [focusedText, setFocusedText] = useState('');
-  const {user} = useAuthContext();
+  const user = useSelector((state: RootState) => state.auth.user);
   const dispatch = useDispatch<AppDispatch>();
   const handleChange = (name: string, value: string): void => {
     setState(s => ({...s, [name]: value}));
@@ -74,11 +73,10 @@ export default function useUploadPost() {
       const reference = storage().ref().child(childPath);
       await reference.putFile(uriPath);
       const URL = await reference.getDownloadURL();
-      const postData = {};
       await firestore()
         .collection(FIRE_BASE_COLLECTION.POST)
         .doc(user.uid)
-        .collection('userPosts')
+        .collection(FIRE_BASE_COLLECTION.USER_POSTS)
         .doc(id)
         .set({
           URL,

@@ -13,7 +13,7 @@ export default function Profile() {
     <View style={[styles.flexContainer]}>
       <View style={[styles.horizantalyCenter]} >
         <Text style={[styles.fontXxl, styles.fontWeightXl, styles.SpacingExSm, { color: Colors.textclr, marginVertical: 12 }]}>
-          jacob_w
+          {profile.user.username}
         </Text>
         <View style={[customStyles.border]}>
           <TouchableOpacity

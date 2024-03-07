@@ -4,7 +4,6 @@ export type routeProps = {
   navigation: NavigationProp<any>;
 };
 export type ToastType = 'success' | 'error' | 'info';
-
 export type handleChangeProps = {
   name: string;
   value: string;
@@ -30,22 +29,20 @@ export type SigninUserData = {
 export type ForgotData = {
   email: string;
 };
-
-export interface AuthContextProps {
+export type AuthContextProps = {
   isAuth: boolean;
   user: Record<string, any>;
   dispatch: React.Dispatch<{
     type: string;
     payload: {userData?: Record<string, any>};
   }>;
-}
-
-export interface FirebaseUser {
+};
+export type FirebaseUser = {
   uid: string;
   displayName?: string | null;
   email?: string | null;
-}
-export interface UserProfileData {
+};
+export type UserProfileData = {
   confirmPassword?: string;
   email?: string;
   password?: string;
@@ -53,21 +50,20 @@ export interface UserProfileData {
   status?: string;
   uid?: string;
   username?: string;
-}
-
-export interface AuthState {
+};
+export type AuthState = {
   isAuth: boolean;
   user: UserProfileData;
-}
-
+  isAppLoading: boolean;
+};
 export type AuthAction =
   | {type: 'Login'; payload: {userData?: UserProfileData}}
   | {type: 'Logout'};
-
 export type userType = {
   bio?: string;
   email?: string;
   gender?: string;
+  name?: string;
   phone?: string;
   profileImage?: string;
   role?: string;
@@ -97,8 +93,13 @@ export type usersDataState = {
   usersData: allPosts[];
   isError: boolean;
 };
-
+export type userDataState = {
+  isAuth: boolean;
+  user: userType;
+  isLoading: boolean;
+};
 export type rootStatePost = {
   posts: postState;
   usersData: usersDataState;
+  userData: userDataState;
 };

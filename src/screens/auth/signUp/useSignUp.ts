@@ -4,7 +4,8 @@ import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import {notify} from '../../../constants/GlobalStyle';
 import {FIRE_BASE_COLLECTION} from '../../../constants/Collections';
-import {useAuthContext} from '../../../context/AuthContext';
+import {login} from '../../../store/slices/authentication';
+import {useDispatch} from 'react-redux';
 const initialState = {
   username: '',
   email: '',
@@ -12,13 +13,13 @@ const initialState = {
   confirmPassword: '',
 };
 export default function useSignUp() {
-  const {dispatch} = useAuthContext();
   const [loading, setisloading] = useState(false);
   const [state, setState] = useState(initialState);
 
   const handleChange = (name: string, value: string): void => {
     setState(s => ({...s, [name]: value}));
   };
+  const dispatch = useDispatch();
   const handleSubmite = () => {
     const {username, email, password, confirmPassword} = state;
     let validRegex =
@@ -75,7 +76,7 @@ export default function useSignUp() {
           .doc(userData.uid)
           .set(userData)
           .then(() => {
-            dispatch({type: 'Login', payload: {userData}});
+            dispatch(login(userData as any));
             notify('Success', 'User SignUp Successfully', 'success');
             setisloading(false);
           })

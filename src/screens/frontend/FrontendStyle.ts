@@ -54,14 +54,7 @@ export const customStyles = StyleSheet.create({
     top: 20,
     right: 20,
     padding: 10,
-    zIndex: 1,
-  },
-  closeButtonText: {
-    fontSize: 16,
-    backgroundColor: Colors.primary,
-    color: '#fff',
-    padding: 10,
-    borderRadius: 10,
+    zIndex: 9,
   },
   fullScreenProfileImg: {
     width: '100%',
