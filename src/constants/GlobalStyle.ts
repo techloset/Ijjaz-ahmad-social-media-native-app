@@ -43,6 +43,13 @@ const styles = StyleSheet.create({
     height: 44,
     paddingHorizontal: 10,
   },
+  btnPrimary: {
+    backgroundColor:Colors.primary,
+    borderWidth: 1,
+    borderColor: Colors.borderColor,
+    borderRadius: 5,
+    paddingVertical: 6,
+  },
 
   fontExSm: {
     fontSize: 11,

@@ -1,44 +1,41 @@
-import React from 'react'
-import { View, Text, TextInput, Button, ScrollView } from 'react-native'
-import { styles } from '../../../constants/GlobalStyle';
-import { authstyles } from '../authStyle';
-import { LargLogo } from '../../../constants/Images';
+import React from 'react';
+import {
+  View,
+  Text,
+  ScrollView,
+} from 'react-native';
+import {styles} from '../../../constants/GlobalStyle';
+import {authstyles} from '../authStyle';
+import {LargLogo} from '../../../constants/Images';
 import useForgotPassword from './useForgotPassword';
-import { Colors } from '../../../constants/Colors';
-
+import Input from '../../../components/inputs/Input';
+import PrimaryBtn from '../../../components/buttons/PrimaryBtn';
 export default function ForgotPassword() {
-  const { loading, state, handleChange, handleSubmite } = useForgotPassword();
-
+  const {loading, state, handleChange, handleSubmite} = useForgotPassword();
   return (
     <View style={[styles.flexContainer]}>
-      <ScrollView >
+      <ScrollView>
         <View style={[styles.horizantalyCenter]}>
-          <View style={[authstyles.textLogo, styles.horizantalyCenter, { marginTop: 100 }]}>
-            <LargLogo />
-            <Text style={{ textAlign: "center", marginTop: 15 }}>Forgot your password? write your email and we will send you a magic link to reset your password</Text>
+          <View style={[styles.horizantalyCenter, authstyles.textLogo]}>
+            <LargLogo width={182} height={49} />
+            <Text style={{textAlign: 'center', marginTop: 15}}>
+              Forgot your password? write your email and we will send you a
+              magic link to reset your password
+            </Text>
           </View>
-          <TextInput
-            style={[styles.formControl, { marginTop: 60, marginBottom: 20 }]}
-            placeholder='Enter your email'
-            placeholderTextColor={Colors.lineColor}
-            keyboardType='email-address'
+          <Input
+            placeholder={'Enter your email'}
             value={state.email}
-            onChangeText={(value: string) => handleChange("email", value)}
+            onChangeText={(value: string) => handleChange('email', value)}
+            type="text"
           />
-          <View style={{ width: "90%" }}>
-            {loading ?
-              <Button title='loading...'
-                disabled={true}
-              />
-              :
-              <Button
-                title='Send Magic Link'
-                onPress={handleSubmite}
-              />
-            }
-          </View>
+          <PrimaryBtn
+            label="Send Magic Link"
+            onPress={handleSubmite}
+            loading={loading}
+          />
         </View>
       </ScrollView>
     </View>
-  )
+  );
 }

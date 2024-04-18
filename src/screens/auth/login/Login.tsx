@@ -1,72 +1,74 @@
-import React from 'react'
-import { View, Text, TextInput, Button, ScrollView } from 'react-native'
-import { routeProps } from '../../../constants/AllTypes';
-import { styles } from '../../../constants/GlobalStyle';
-import { authstyles } from '../authStyle';
-
-import { AUTH_STACK_SCREEN } from '../../../constants/Navigation';
-import { Google, LargLogo } from '../../../constants/Images';
-import { Colors } from '../../../constants/Colors';
+import React from 'react';
+import {View, Text, ScrollView} from 'react-native';
+import {routeProps} from '../../../constants/AllTypes';
+import {styles} from '../../../constants/GlobalStyle';
+import {AUTH_STACK_SCREEN} from '../../../constants/Navigation';
+import {Colors} from '../../../constants/Colors';
 import useLogin from './useLogin';
-export default function Login({ navigation }: routeProps) {
-  const { loading, state, handleChange, handleSubmite, handleGoogleSignin } = useLogin()
-
+import PrimaryBtn from '../../../components/buttons/PrimaryBtn';
+import Input from '../../../components/inputs/Input';
+import TextLogo from '../../../components/TextLogo';
+import GoogleSigninBtn from '../../../components/googleSignin/GoogleSigninBtn';
+import SeperatorLine from '../../../components/SeperatorLine';
+import TextLink from '../../../components/TextLink';
+export default function Login({navigation}: routeProps) {
+  const {loading, state, handleChange, handleSubmite} = useLogin();
   return (
     <View style={[styles.flexContainer]}>
-      <ScrollView >
-        <View style={[styles.horizantalyCenter, authstyles.textLogo]}>
-          <LargLogo />
-        </View>
+      <ScrollView>
+        <TextLogo />
         <View style={[styles.horizantalyCenter]}>
-          <TextInput
-            style={styles.formControl}
-            placeholder='Enter your email'
-            placeholderTextColor={Colors.lineColor}
-            keyboardType='email-address'
+          <Input
+            placeholder={'Enter your email'}
             value={state.email}
-            onChangeText={(value: string) => handleChange("email", value)}
+            onChangeText={(value: string) => handleChange('email', value)}
+            type="text"
           />
-          <TextInput
-            style={styles.formControl}
-            placeholder='Enter your password'
-            placeholderTextColor={Colors.lineColor}
+          <Input
+            placeholder={'Enter your password'}
             value={state.password}
-            secureTextEntry
-            onChangeText={(value: string) => handleChange("password", value)}
+            onChangeText={(value: string) => handleChange('password', value)}
+            type={'password'}
           />
         </View>
         <View style={[styles.flexEnd]}>
-          <Text style={authstyles.forget} onPress={() => { navigation.navigate(AUTH_STACK_SCREEN.FORGOT_PASSWORD) }}>Forgot password?</Text>
+          <TextLink
+            onPress={() => {
+              navigation.navigate(AUTH_STACK_SCREEN.FORGOT_PASSWORD);
+            }}
+            label="Forgot password?"
+          />
         </View>
         <View style={[styles.horizantalyCenter]}>
-          <View style={{ width: "90%" }}>
-            {loading ?
-              <Button title='loading...'
-                disabled={true}
-              />
-              :
-              <Button
-                title='Log In'
-                onPress={handleSubmite}
-              />
-            }
-          </View>
+          <PrimaryBtn
+            label="Log In"
+            onPress={handleSubmite}
+            loading={loading}
+          />
         </View>
         <View style={[styles.horizantalyCenter]}>
-          <View style={{ display: "flex", flexDirection: "row", marginVertical: 30 }}>
-            <Google width="16.67" height="16.67" style={{ marginHorizontal: 10, }} />
-            <Text style={[styles.fontL, styles.fontWeightXl, styles.SpacingM, { textAlign: "center", color: Colors.textclr }]} onPress={handleGoogleSignin}>Login with Google</Text>
-          </View>
-          <View style={{ display: "flex", flexDirection: "row", marginVertical: 5 }}>
-            <View style={[authstyles.line]}></View>
-            <Text style={[styles.fontSm, styles.fontWeightXl, styles.SpacingSm, { textAlign: "center", color: Colors.textLight }]}>OR</Text>
-            <View style={[authstyles.line]}></View>
-          </View>
-          <View style={{ marginVertical: 30 }}>
-            <Text style={[styles.fontL, styles.fontWeightM, styles.SpacingM, { textAlign: "center", color: Colors.textLight }]}>Don't have an account.<Text style={authstyles.forget} onPress={() => { navigation.navigate(AUTH_STACK_SCREEN.SIGNUP) }} >Sign up.</Text></Text>
+          <GoogleSigninBtn />
+          <SeperatorLine />
+          <View>
+            <Text
+              style={[
+                styles.fontL,
+                styles.fontWeightM,
+                styles.SpacingM,
+                {textAlign: 'center', color: Colors.textLight, marginTop: 41},
+              ]}>
+              Don't have an account.
+              <Text
+                onPress={() => {
+                  navigation.navigate(AUTH_STACK_SCREEN.SIGNUP);
+                }}
+                style={{color: Colors.primary}}>
+                Sign up.
+              </Text>
+            </Text>
           </View>
         </View>
       </ScrollView>
     </View>
-  )
+  );
 }

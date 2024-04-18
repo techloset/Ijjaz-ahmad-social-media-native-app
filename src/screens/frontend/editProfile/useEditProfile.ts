@@ -86,12 +86,10 @@ export default function useEditProfile() {
   };
 
   const uploadFile = async () => {
-    setLoading(true);
     try {
       const fileType = imageType;
       const uriPath = image;
       const Type = fileType.split('/').pop();
-      const id = Math.random().toString(36).slice(2);
       const childPath = `/profile/${user.uid}/profileImage.${Type}`;
       const reference = storage().ref().child(childPath);
       await reference.putFile(uriPath);
@@ -130,6 +128,7 @@ export default function useEditProfile() {
   const handleSubmite = async () => {
     setFocusedText('done');
     try {
+      setLoading(true);
       var profileImg = '';
       if (image !== '') {
         profileImg = await uploadFile();
@@ -145,8 +144,10 @@ export default function useEditProfile() {
         .doc(user.uid)
         .update(state);
       notify('Success', 'Profile successfully updated!', 'success');
+      setLoading(false);
     } catch (error) {
       notify('Error', 'Error updating profile', 'error');
+      setLoading(false);
     }
   };
 

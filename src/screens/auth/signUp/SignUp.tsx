@@ -1,87 +1,85 @@
-import React from 'react'
-import { View, Text, TextInput, Button, ScrollView } from 'react-native'
-import { routeProps } from '../../../constants/AllTypes';
-import { styles } from '../../../constants/GlobalStyle';
-import { authstyles } from '../authStyle';
-import { AUTH_STACK_SCREEN } from '../../../constants/Navigation';
-import { Google, LargLogo } from '../../../constants/Images';
-import { Colors } from '../../../constants/Colors';
+import React from 'react';
+import {View, Text, ScrollView} from 'react-native';
+import {routeProps} from '../../../constants/AllTypes';
+import {styles} from '../../../constants/GlobalStyle';
+import {AUTH_STACK_SCREEN} from '../../../constants/Navigation';
+import {Colors} from '../../../constants/Colors';
 import useSignUp from './useSignUp';
-
-export default function Signup({ navigation }: routeProps) {
-  const { loading, state, handleChange, handleSubmite } = useSignUp()
+import TextLogo from '../../../components/TextLogo';
+import Input from '../../../components/inputs/Input';
+import TextLink from '../../../components/TextLink';
+import PrimaryBtn from '../../../components/buttons/PrimaryBtn';
+import SeperatorLine from '../../../components/SeperatorLine';
+import GoogleSigninBtn from '../../../components/googleSignin/GoogleSigninBtn';
+export default function Signup({navigation}: routeProps) {
+  const {loading, state, handleChange, handleSubmite} = useSignUp();
   return (
     <View style={[styles.flexContainer]}>
-      <ScrollView >
-        <View style={[authstyles.textLogo, styles.horizantalyCenter]}>
-          <LargLogo />
-        </View>
+      <ScrollView>
+        <TextLogo />
         <View style={[styles.horizantalyCenter]}>
-          <TextInput
-            style={styles.formControl}
-            placeholder='Username'
-            placeholderTextColor={Colors.lineColor}
+          <Input
+            placeholder={'Username'}
             value={state.username}
-            onChangeText={(value: string) => handleChange("username", value)}
+            onChangeText={value => handleChange('username', value)}
+            type="text"
           />
-          <TextInput
-            style={styles.formControl}
-            placeholder='Email'
-            placeholderTextColor={Colors.lineColor}
-            keyboardType='email-address'
+          <Input
+            placeholder={'Email'}
             value={state.email}
-            onChangeText={(value: string) => handleChange("email", value)}
+            onChangeText={value => handleChange('email', value)}
+            type="text"
           />
-          <TextInput
-            style={styles.formControl}
-            placeholder='Password'
-            placeholderTextColor={Colors.lineColor}
+          <Input
+            placeholder={'Password'}
             value={state.password}
-            secureTextEntry
-            onChangeText={(value: string) => handleChange("password", value)}
+            onChangeText={value => handleChange('password', value)}
+            type="password"
           />
-          <TextInput
-            style={styles.formControl}
-            placeholder='Confirm Password'
-            placeholderTextColor={Colors.lineColor}
+          <Input
+            placeholder={'Confirm Password'}
             value={state.confirmPassword}
-            secureTextEntry
-            onChangeText={(value: string) => handleChange("confirmPassword", value)}
+            onChangeText={value => handleChange('confirmPassword', value)}
+            type="password"
           />
         </View>
         <View style={[styles.flexEnd]}>
-          <Text style={authstyles.forget} onPress={() => { navigation.navigate(AUTH_STACK_SCREEN.FORGOT_PASSWORD) }}>Forgot password?</Text>
+          <TextLink
+            onPress={() => {
+              navigation.navigate(AUTH_STACK_SCREEN.FORGOT_PASSWORD);
+            }}
+            label="Forgot password"
+          />
         </View>
         <View style={[styles.horizantalyCenter]}>
-          <View style={{ width: "90%" }}>
-            {loading ?
-              <Button title='loading...'
-                disabled={true}
-              />
-              :
-              <Button
-                title='Sign Up'
-                onPress={handleSubmite}
-              />
-
-            }
-          </View>
+          <PrimaryBtn
+            label="Sign Up"
+            onPress={handleSubmite}
+            loading={loading}
+          />
         </View>
         <View style={[styles.horizantalyCenter]}>
-          <View style={{ display: "flex", flexDirection: "row", marginVertical: 30 }}>
-            <Google width="16.67" height="16.67" style={{ marginHorizontal: 10, }} />
-            <Text style={[styles.fontL, styles.fontWeightXl, styles.SpacingM, { textAlign: "center", color: Colors.textclr }]} >Login with Google</Text>
-          </View>
-          <View style={{ display: "flex", flexDirection: "row", marginVertical: 5 }}>
-            <View style={[authstyles.line]}></View>
-            <Text style={[styles.fontSm, styles.fontWeightXl, styles.SpacingSm, { textAlign: "center", color: Colors.textLight }]}>OR</Text>
-            <View style={[authstyles.line]}></View>
-          </View>
-          <View style={{ marginVertical: 30 }}>
-            <Text style={[styles.fontL, styles.fontWeightM, styles.SpacingM, { textAlign: "center", color: Colors.textLight }]}>Don't have an account.<Text style={authstyles.forget} onPress={() => { navigation.navigate(AUTH_STACK_SCREEN.LOGIN) }} >Login.</Text></Text>
+          <GoogleSigninBtn />
+          <SeperatorLine />
+          <View>
+            <Text
+              style={[
+                styles.fontL,
+                styles.fontWeightM,
+                styles.SpacingM,
+                {textAlign: 'center', color: Colors.textLight, marginTop: 41},
+              ]}>
+              Already have an account?
+              <TextLink
+                onPress={() => {
+                  navigation.navigate(AUTH_STACK_SCREEN.LOGIN);
+                }}
+                label="Log In"
+              />
+            </Text>
           </View>
         </View>
       </ScrollView>
     </View>
-  )
+  );
 }

@@ -45,10 +45,10 @@ const useLogin = () => {
     }
     let userData = {email, password};
     setisloading(true);
-    createUser(userData);
+    logInUser(userData);
     setState(initialState);
   };
-  const createUser = (userData: SigninUserData): void => {
+  const logInUser = (userData: SigninUserData): void => {
     auth()
       .signInWithEmailAndPassword(userData.email, userData.password)
       .then(() => {
@@ -85,29 +85,7 @@ const useLogin = () => {
     });
   }, []);
 
-  const handleGoogleSignin = async () => {
-    try {
-      await GoogleSignin.hasPlayServices();
-      const userData = await GoogleSignin.signIn();
-      notify(
-        'User Login Successfully!',
-        'wellcome to instagramMeToYou app',
-        'success',
-      );
-      dispatch({type: 'Login', payload: {userData}});
-    } catch (error: any) {
-      if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-        // user cancelled the login flow
-      } else if (error.code === statusCodes.IN_PROGRESS) {
-        // operation (e.g. sign in) is in progress already
-      } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-        // play services not available or outdated
-      } else {
-        // some other error happened
-        console.log('🚀 ~ Login ~ userinfo:', userinfo);
-      }
-    }
-  };
+ 
   return {
     loading,
     setisloading,
@@ -117,7 +95,7 @@ const useLogin = () => {
     setUserInfo,
     handleChange,
     handleSubmite,
-    handleGoogleSignin,
+    
   };
 };
 

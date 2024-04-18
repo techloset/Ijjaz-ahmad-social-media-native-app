@@ -6,7 +6,7 @@ import { FIRE_BASE_COLLECTION } from '../../constants/Collections';
 export const fetchPost = createAsyncThunk('post/fetchPost', async () => {
   try {
     const currentUser = auth().currentUser;
-    const userId = currentUser ? currentUser.uid : null;
+    const userId = currentUser ? currentUser?.uid : null;
     if (!userId) {
       throw new Error('User not authenticated');
     }

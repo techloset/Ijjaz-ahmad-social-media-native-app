@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, Image, ScrollView, TextInput, Modal } from 'react-native'
+import { View, Text, TouchableOpacity, Image, ScrollView, TextInput, Modal, ActivityIndicator } from 'react-native'
 import React from 'react'
 import { styles } from '../../../constants/GlobalStyle'
 import { customStyles } from '../FrontendStyle'
@@ -6,7 +6,7 @@ import { Colors } from '../../../constants/Colors'
 import { CrossIcon, User } from '../../../constants/Images'
 import useEditProfile from './useEditProfile';
 export default function EditProfile() {
-  const { state, isModalVisible, image, focusedText, setFocusedText, handleChange, handleCamra, handleGallery, toggleModal, handleCancel, handleSubmite } = useEditProfile()
+  const { state, isModalVisible, image, focusedText, setFocusedText, handleChange, handleCamra, handleGallery, toggleModal, handleCancel, handleSubmite,loading } = useEditProfile()
   return (
     <View style={[styles.flexContainer]}>
       <View style={[styles.flexRow, styles.horizantalyBetween, { backgroundColor: Colors.inputbg, padding: 12 }]}>
@@ -39,7 +39,10 @@ export default function EditProfile() {
             Edit Profile
           </Text>
         </TouchableOpacity>
-        <TouchableOpacity
+        {
+          loading? 
+          <ActivityIndicator size="small" color={Colors.primary} />
+          :<TouchableOpacity
           onPress={handleSubmite}
         >
           <Text
@@ -54,6 +57,8 @@ export default function EditProfile() {
             Done
           </Text>
         </TouchableOpacity>
+        }
+        
       </View>
       <ScrollView>
         <View style={[styles.horizantalyCenter]} >

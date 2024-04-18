@@ -2,7 +2,8 @@ import Profile from '../assets/images/ProfileImage.svg';
 import ProfileIcon from '../assets/images/ProfileIcon.svg';
 import HomeIcon from '../assets/images/home.svg';
 import UploadIcon from '../assets/images/uploadIcon.svg';
-import Google from '../assets/images/google.svg';
+import GoogleLogin from '../assets/images/googleLogin.svg';
+import GoogleSignup from '../assets/images/googleSignup.svg';
 import LargLogo from '../assets/images/InstagramLogo.svg';
 import SmallLogo from '../assets/images/InstagramLogoSmall.svg';
 import Lock from '../assets/images/lockIcon.svg';
@@ -19,11 +20,13 @@ import ArrowDown from '../assets/images/arrowDown.svg';
 import HeartIcon from '../assets/images/heartIcon.svg';
 import HomeHover from '../assets/images/homeHover.svg';
 import UploadHover from '../assets/images/plusHover.svg';
+import Google from '../assets/images/google.svg';
 export {
   User,
   HomeIcon,
   UploadIcon,
-  Google,
+  GoogleLogin,
+  GoogleSignup,
   LargLogo,
   SmallLogo,
   Lock,
@@ -41,4 +44,5 @@ export {
   HeartIcon,
   HomeHover,
   UploadHover,
+  Google,
 };
