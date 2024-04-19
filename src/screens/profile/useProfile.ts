@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import {useRoute} from '@react-navigation/native';
-import {allPosts} from '../../../constants/AllTypes';
+import {allPosts} from '../../constants/AllTypes';
 
 export default function useProfile() {
   const [isModalVisible, setModalVisible] = useState(false);

@@ -1,10 +1,10 @@
 import { View, Text, ScrollView, Image, Modal, TouchableOpacity, } from 'react-native'
 import React from 'react'
-import { styles } from '../../../constants/GlobalStyle'
-import { CrossIcon, TabsIcon, User } from '../../../constants/Images'
+import { styles } from '../../constants/GlobalStyle'
+import { CrossIcon, TabsIcon, User } from '../../constants/Images'
 import { customStyles } from '../FrontendStyle'
-import { Colors } from '../../../constants/Colors'
-import { postType } from '../../../constants/AllTypes'
+import { Colors } from '../../constants/Colors'
+import { postType } from '../../constants/AllTypes'
 import useProfile from './useProfile'
 
 export default function Profile() {

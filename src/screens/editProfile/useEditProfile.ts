@@ -1,12 +1,12 @@
 import {useEffect, useState} from 'react';
 import firestore from '@react-native-firebase/firestore';
-import {notify} from '../../../constants/GlobalStyle';
+import {notify} from '../../constants/GlobalStyle';
 import storage from '@react-native-firebase/storage';
-import {FIRE_BASE_COLLECTION} from '../../../constants/Collections';
+import {FIRE_BASE_COLLECTION} from '../../constants/Collections';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import {useSelector} from 'react-redux';
-import {RootState} from '../../../store/Store';
-import {userType} from '../../../constants/AllTypes';
+import {RootState} from '../../store/Store';
+import {userType} from '../../constants/AllTypes';
 const initialState: userType = {
   bio: '',
   email: '',

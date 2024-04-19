@@ -1,10 +1,10 @@
 import { View, Text, ScrollView, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
-import { styles } from '../../../constants/GlobalStyle'
-import { BookMark, Comment, HeartIcon, ProfileIcon, Telegram, ThreeDots, User } from '../../../constants/Images'
-import { STACK_SCREENS } from '../../../constants/Navigation'
-import { allPosts, postType, routeProps, } from '../../../constants/AllTypes'
-import { Colors } from '../../../constants/Colors'
+import { styles } from '../../constants/GlobalStyle'
+import { BookMark, Comment, HeartIcon, ProfileIcon, Telegram, ThreeDots, User } from '../../constants/Images'
+import { STACK_SCREENS } from '../../constants/Navigation'
+import { allPosts, postType, routeProps, } from '../../constants/AllTypes'
+import { Colors } from '../../constants/Colors'
 
 import useHome from './useHome'
 export default function Home({ navigation }: routeProps) {

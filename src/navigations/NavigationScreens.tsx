@@ -2,13 +2,13 @@ import { AUTH_STACK_SCREEN, STACK_SCREENS, BOTTOM_TAB_SCREEN } from "../constant
 import ForgotPassword from "../screens/auth/forgotPassword/ForgotPassword";
 import Login from "../screens/auth/login/Login";
 import Signup from "../screens/auth/signUp/SignUp";
-import EditProfile from "../screens/frontend/editProfile/EditProfile";
-import Home from "../screens/frontend/home/Home";
+import EditProfile from "../screens/editProfile/EditProfile";
+import Home from "../screens/home/Home";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Profile from "../screens/frontend/profile/Profile";
+import Profile from "../screens/profile/Profile";
 import { HomeHover, HomeIcon, SmallLogo, UploadHover, UploadIcon } from "../constants/Images";
-import ProfileSelf from "../screens/frontend/profileSelf/ProfileSelf";
-import UploadPost from "../screens/frontend/uploadPost/UploadPost";
+import ProfileSelf from "../screens/profileSelf/ProfileSelf";
+import UploadPost from "../screens/uploadPost/UploadPost";
 import { Image } from "react-native";
 import { Colors } from "../constants/Colors";
 import { useSelector } from "react-redux";

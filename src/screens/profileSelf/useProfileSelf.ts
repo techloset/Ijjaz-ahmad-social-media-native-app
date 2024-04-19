@@ -1,18 +1,17 @@
 import {useEffect, useState} from 'react';
-import {notify} from '../../../constants/GlobalStyle';
+import {notify} from '../../constants/GlobalStyle';
 import auth from '@react-native-firebase/auth';
-import {rootStatePost} from '../../../constants/AllTypes';
+import {rootStatePost} from '../../constants/AllTypes';
 import {useDispatch, useSelector} from 'react-redux';
-import {AppDispatch, RootState} from '../../../store/store';
-import {fetchPost} from '../../../store/slices/postSlice';
+import {AppDispatch, RootState} from '../../store/store';
+import {fetchPost} from '../../store/slices/postSlice';
 import {firebase} from '@react-native-firebase/storage';
-import {FIRE_BASE_COLLECTION} from '../../../constants/Collections';
-import {logout} from '../../../store/slices/authentication';
+import {FIRE_BASE_COLLECTION} from '../../constants/Collections';
+import {logout} from '../../store/slices/authentication';
 export default function useProfileSelf() {
   const [isModalVisible, setModalVisible] = useState(false);
   const [postId, setPostId] = useState('');
   const [modalImg, setModalImg] = useState('');
-  const user = useSelector((state: RootState) => state.auth.user);
   const userPosts = useSelector(
     (state: rootStatePost) => state.posts.userPosts,
   );
@@ -62,7 +61,6 @@ export default function useProfileSelf() {
     modalImg,
     setModalImg,
     userPosts,
-    user,
     toggleModal,
     handleDelete,
     handleLogout,

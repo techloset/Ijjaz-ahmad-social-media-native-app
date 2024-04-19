@@ -2,11 +2,11 @@ import {useState} from 'react';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import storage from '@react-native-firebase/storage';
 import firestore, {firebase} from '@react-native-firebase/firestore';
-import {notify} from '../../../constants/GlobalStyle';
-import {FIRE_BASE_COLLECTION} from '../../../constants/Collections';
-import {fetchPost} from '../../../store/slices/postSlice';
+import {notify} from '../../constants/GlobalStyle';
+import {FIRE_BASE_COLLECTION} from '../../constants/Collections';
+import {fetchPost} from '../../store/slices/postSlice';
 import {useDispatch, useSelector} from 'react-redux';
-import {AppDispatch, RootState} from '../../../store/store';
+import {AppDispatch, RootState} from '../../store/store';
 const initialState = {description: ''};
 export default function useUploadPost() {
   const [isModalVisible, setModalVisible] = useState(false);

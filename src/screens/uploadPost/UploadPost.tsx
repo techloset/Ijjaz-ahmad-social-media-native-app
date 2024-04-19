@@ -1,9 +1,9 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, Image, Modal, TextInput, ScrollView } from 'react-native';
-import { styles } from '../../../constants/GlobalStyle';
+import { styles } from '../../constants/GlobalStyle';
 import { customStyles } from '../FrontendStyle';
-import { Colors } from '../../../constants/Colors';
-import { ArrowDown, CrossIcon, UploadButton } from '../../../constants/Images';
+import { Colors } from '../../constants/Colors';
+import { ArrowDown, CrossIcon, UploadButton } from '../../constants/Images';
 import useUploadPost from './useUploadPost'
 export default function UploadPost() {
   const { isModalVisible, image, imageType, imageSize, loading, state, focusedText, setFocusedText, handleChange, handleCamra, handleGallery, uploadFile, handleCancel, toggleModal } = useUploadPost()
