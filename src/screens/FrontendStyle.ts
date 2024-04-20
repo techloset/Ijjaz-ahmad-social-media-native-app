@@ -42,23 +42,16 @@ export const customStyles = StyleSheet.create({
   },
   modalContainer: {
     marginHorizontal: 10,
-    minHeight: '35%',
+    minHeight: 100,
     justifyContent: 'center',
     borderWidth: 1,
     borderColor: Colors.borderColor,
     borderRadius: 5,
     padding: 6,
   },
-  closeButton: {
-    position: 'absolute',
-    top: 20,
-    right: 20,
-    padding: 10,
-    zIndex: 9,
-  },
   fullScreenProfileImg: {
     width: '100%',
-    height: '100%',
+    height: '75%',
     resizeMode: 'contain',
   },
 });

@@ -21,7 +21,7 @@ export default function useUploadPost() {
   const handleChange = (name: string, value: string): void => {
     setState(s => ({...s, [name]: value}));
   };
-  const handleCamra = async () => {
+ const handleCamra = async () => {
     const result = await launchCamera({mediaType: 'photo'});
     if (
       !result.didCancel &&
@@ -31,6 +31,7 @@ export default function useUploadPost() {
       result.assets[0].type &&
       result.assets[0].fileSize
     ) {
+      console.log("🚀 ~ handleCamra ~ result:", result.assets[0].uri)
       setImage(result.assets[0].uri);
       setImageType(result.assets[0].type);
       let itemSize = result.assets[0].fileSize;
@@ -38,8 +39,10 @@ export default function useUploadPost() {
       size = Number(size.toFixed(2));
       setImageSize(size);
       setModalVisible(false);
+      
     }
   };
+  console.log("🚀 ~ handleCamra ~ image:", image)
 
   const handleGallery = async () => {
     const result = await launchImageLibrary({mediaType: 'photo'});

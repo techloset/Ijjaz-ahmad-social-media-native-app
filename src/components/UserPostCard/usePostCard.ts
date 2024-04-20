@@ -19,7 +19,7 @@ export default function usePostCard() {
     setModalImg(item.URL);
     setModalVisible(!isModalVisible);
   };
- 
+
   return {
     isModalVisible,
     setModalVisible,
@@ -29,6 +29,5 @@ export default function usePostCard() {
     setModalImg,
     userPosts,
     toggleModal,
-   
   };
 }

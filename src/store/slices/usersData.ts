@@ -1,9 +1,5 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
-import {
-  postType,
-  userType,
-  usersDataState,
-} from '../../constants/AllTypes';
+import {postType, userType, usersDataState} from '../../constants/AllTypes';
 import firestore from '@react-native-firebase/firestore';
 import {FIRE_BASE_COLLECTION} from '../../constants/Collections';
 
@@ -73,7 +69,6 @@ const initialState: usersDataState = {
   usersData: [],
   isError: false,
 };
-
 const usersData = createSlice({
   name: 'usersData',
   initialState,

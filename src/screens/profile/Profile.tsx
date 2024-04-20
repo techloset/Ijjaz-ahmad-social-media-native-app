@@ -56,7 +56,7 @@ export default function Profile() {
           onRequestClose={toggleModal}
         >
           <View style={customStyles.modalContainer}>
-            <TouchableOpacity onPress={toggleModal} style={customStyles.closeButton}>
+            <TouchableOpacity onPress={toggleModal} style={{}}>
               <CrossIcon />
             </TouchableOpacity>
             {modalImg === "" ?

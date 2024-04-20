@@ -7,6 +7,14 @@ import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../store/Store';
 import {userType} from '../../constants/AllTypes';
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+type RootStackParamList = {
+  PROFILE_SELF: undefined;
+};
+type ProfileScreenNavigationProp =
+  NativeStackNavigationProp<RootStackParamList>;
+
 const initialState: userType = {
   bio: '',
   email: '',
@@ -29,6 +37,7 @@ export default function useEditProfile() {
   const [imageType, setImageType] = useState<string>('');
   const [imageSize, setImageSize] = useState<number | null>();
   const [focusedText, setFocusedText] = useState('');
+  const navigation = useNavigation<ProfileScreenNavigationProp>();
   useEffect(() => {
     let {name, username, website, bio, email, phone, gender, profileImage} =
       user;
@@ -123,9 +132,10 @@ export default function useEditProfile() {
     setImage('');
     setImageSize(null);
     setImageType('');
+    navigation.navigate('PROFILE_SELF');
   };
 
-  const handleSubmite = async () => {
+  const handleSubmit = async () => {
     setFocusedText('done');
     try {
       setLoading(true);
@@ -172,6 +182,6 @@ export default function useEditProfile() {
     handleGallery,
     toggleModal,
     handleCancel,
-    handleSubmite,
+    handleSubmit,
   };
 }

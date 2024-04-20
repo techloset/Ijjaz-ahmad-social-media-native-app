@@ -8,6 +8,7 @@ import {
 } from '@react-native-google-signin/google-signin';
 import {notify} from '../../../constants/GlobalStyle';
 import {useDispatch} from 'react-redux';
+import { login } from '../../../store/slices/authentication';
 const initialState = {email: '', password: ''};
 interface UserData {
   user?: {
@@ -52,6 +53,7 @@ const useLogin = () => {
     auth()
       .signInWithEmailAndPassword(userData.email, userData.password)
       .then(() => {
+        dispatch(login(userData as any));
         notify(
           'User Login Successfully!',
           'wellcome to instagramMeToYou app',
