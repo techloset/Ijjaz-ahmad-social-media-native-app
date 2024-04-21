@@ -8,7 +8,7 @@ export default function useHome() {
   const usersData = useSelector(
     (state: rootStatePost) => state.usersData.usersData,
   );
-  
+
   const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
     dispatch(fetchUsersData());

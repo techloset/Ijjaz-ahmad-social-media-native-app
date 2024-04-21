@@ -2,7 +2,6 @@ import {notify} from '../../constants/GlobalStyle';
 import auth from '@react-native-firebase/auth';
 import {useDispatch} from 'react-redux';
 import {AppDispatch} from '../../store/store';
-import {fetchPost} from '../../store/slices/postSlice';
 import {logout} from '../../store/slices/authentication';
 export default function useProfileSelf() {
   const dispatch = useDispatch<AppDispatch>();

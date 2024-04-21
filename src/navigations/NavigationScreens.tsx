@@ -1,40 +1,49 @@
-import { AUTH_STACK_SCREEN, STACK_SCREENS, BOTTOM_TAB_SCREEN } from "../constants/Navigation";
-import ForgotPassword from "../screens/auth/forgotPassword/ForgotPassword";
-import Login from "../screens/auth/login/Login";
-import Signup from "../screens/auth/signUp/SignUp";
-import EditProfile from "../screens/editProfile/EditProfile";
-import Home from "../screens/home/Home";
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Profile from "../screens/profile/Profile";
-import { HomeHover, HomeIcon, SmallLogo, UploadHover, UploadIcon } from "../constants/Images";
-import ProfileSelf from "../screens/profileSelf/ProfileSelf";
-import UploadPost from "../screens/uploadPost/UploadPost";
-import { Image } from "react-native";
-import { Colors } from "../constants/Colors";
-import { useSelector } from "react-redux";
-import { RootState } from "../store/Store";
-import { styles } from "../constants/GlobalStyle";
+import {
+  AUTH_STACK_SCREEN,
+  STACK_SCREENS,
+  BOTTOM_TAB_SCREEN,
+} from '../constants/Navigation';
+import ForgotPassword from '../screens/auth/forgotPassword/ForgotPassword';
+import Login from '../screens/auth/login/Login';
+import Signup from '../screens/auth/signUp/SignUp';
+import EditProfile from '../screens/editProfile/EditProfile';
+import Home from '../screens/home/Home';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import Profile from '../screens/profile/Profile';
+import {
+  HomeHover,
+  HomeIcon,
+  SmallLogo,
+  UploadHover,
+  UploadIcon,
+} from '../constants/Images';
+import ProfileSelf from '../screens/profileSelf/ProfileSelf';
+import UploadPost from '../screens/uploadPost/UploadPost';
+import {Image} from 'react-native';
+import {Colors} from '../constants/Colors';
+import {useSelector} from 'react-redux';
+import {RootState} from '../store/Store';
+import {styles} from '../constants/GlobalStyle';
 
 export const AUTH_STACK_NAVIGATION_SCREENS = [
-  { name: AUTH_STACK_SCREEN.LOGIN, component: Login },
-  { name: AUTH_STACK_SCREEN.SIGNUP, component: Signup },
-  { name: AUTH_STACK_SCREEN.FORGOT_PASSWORD, component: ForgotPassword },
-]
+  {name: AUTH_STACK_SCREEN.LOGIN, component: Login},
+  {name: AUTH_STACK_SCREEN.SIGNUP, component: Signup},
+  {name: AUTH_STACK_SCREEN.FORGOT_PASSWORD, component: ForgotPassword},
+];
 export const STACK_NAVIGATION_SCREENS = [
-  { name: STACK_SCREENS.BOTTOM_TAB, component: MyTabs },
-  { name: STACK_SCREENS.PROFILE, component: Profile },
-  { name: STACK_SCREENS.PROFILE_EDIT, component: EditProfile },
-]
+  {name: STACK_SCREENS.BOTTOM_TAB, component: MyTabs},
+  {name: STACK_SCREENS.PROFILE, component: Profile},
+  {name: STACK_SCREENS.PROFILE_EDIT, component: EditProfile},
+];
 const Tab = createBottomTabNavigator();
 function MyTabs() {
-  const { HOME, UPLOAD_POST, PROFILE_SELF } = BOTTOM_TAB_SCREEN;
+  const {HOME, UPLOAD_POST, PROFILE_SELF} = BOTTOM_TAB_SCREEN;
   const user = useSelector((state: RootState) => state.auth.user);
   return (
     <Tab.Navigator
       screenOptions={({}) => ({
-        tabBarStyle: { paddingTop: 10 },
-      })}
-    >
+        tabBarStyle: {paddingTop: 10},
+      })}>
       <Tab.Screen
         name={HOME}
         component={Home}
@@ -43,9 +52,12 @@ function MyTabs() {
           title: '',
           headerTitle: () => <SmallLogo />,
           headerTitleAlign: 'center',
-          tabBarIcon: ({  focused  }) => (
-            focused? <HomeHover width={30} height={35}/>:<HomeIcon width={22} height={23} />
-          ),
+          tabBarIcon: ({focused}) =>
+            focused ? (
+              <HomeHover width={30} height={35} />
+            ) : (
+              <HomeIcon width={22} height={23} />
+            ),
         }}
       />
       <Tab.Screen
@@ -54,9 +66,12 @@ function MyTabs() {
         options={{
           headerShown: false,
           title: '',
-          tabBarIcon: ({  focused  }) => (
-            focused? <UploadHover width={23} height={23}/>:<UploadIcon width={23} height={23} /> 
-          ),
+          tabBarIcon: ({focused}) =>
+            focused ? (
+              <UploadHover width={23} height={23} />
+            ) : (
+              <UploadIcon width={23} height={23} />
+            ),
         }}
       />
       <Tab.Screen
@@ -65,11 +80,25 @@ function MyTabs() {
         options={{
           headerShadowVisible: false,
           title: '',
-          headerTitle:`${user?.username}`,
+          headerTitle: `${user?.username}`,
           headerTitleAlign: 'center',
-          headerTitleStyle:[styles.fontWeightXl,styles.fontXxl,styles.SpacingExSm,{color:Colors.textclr}],
-          tabBarIcon: ({  focused  }) => (
-            <Image source={{uri:user.profileImage}} style={{width:27, height:27,borderWidth:1, borderRadius:100 ,borderColor: focused ?Colors.textclr :Colors.lineColor ,}}/>
+          headerTitleStyle: [
+            styles.fontWeightXl,
+            styles.fontXxl,
+            styles.SpacingExSm,
+            {color: Colors.textclr},
+          ],
+          tabBarIcon: ({focused}) => (
+            <Image
+              source={{uri: user.profileImage}}
+              style={{
+                width: 27,
+                height: 27,
+                borderWidth: 1,
+                borderRadius: 100,
+                borderColor: focused ? Colors.textclr : Colors.lineColor,
+              }}
+            />
           ),
         }}
       />

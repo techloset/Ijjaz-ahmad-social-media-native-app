@@ -1,5 +1,12 @@
-import {View, Text, Modal, TouchableOpacity, Image} from 'react-native';
-import React from 'react';
+import {
+  View,
+  Text,
+  Modal,
+  TouchableOpacity,
+  Image,
+  ActivityIndicator,
+} from 'react-native';
+import React, {useState} from 'react';
 import {customStyles} from '../../screens/FrontendStyle';
 import {CrossIcon, Delete} from '../../constants/Images';
 import {Colors} from '../../constants/Colors';
@@ -26,9 +33,10 @@ export default function CustomModel({
   onRequestClose,
 }: ModelProps) {
   const dispatch = useDispatch<AppDispatch>();
-  const {setModalVisible} = usePostCard();
+  const [loading, setisLoading] = useState(false);
   const handleDelete = async () => {
     try {
+      setisLoading(true);
       const userPostsRef = firebase
         .firestore()
         .collection(FIRE_BASE_COLLECTION.POST)
@@ -43,7 +51,8 @@ export default function CustomModel({
       await storageRef.delete();
       dispatch(fetchPost());
       notify('Success', 'Post has been deleted', 'success');
-      setModalVisible(false);
+      // setModalVisible(false);
+      setisLoading(false);
     } catch (error) {
       notify('Error', `${error}`, 'error');
     }
@@ -74,9 +83,13 @@ export default function CustomModel({
               alignItems: 'center',
               margin: 20,
             }}>
-            <TouchableOpacity onPress={handleDelete}>
-              <Delete width={24} />
-            </TouchableOpacity>
+            {loading ? (
+              <ActivityIndicator size="small" color={Colors.primary} />
+            ) : (
+              <TouchableOpacity onPress={handleDelete}>
+                <Delete width={24} />
+              </TouchableOpacity>
+            )}
             <TouchableOpacity onPress={onPress}>
               <CrossIcon />
             </TouchableOpacity>

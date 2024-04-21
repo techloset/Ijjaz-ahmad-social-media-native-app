@@ -61,7 +61,7 @@ export default function GoogleSigninBtn() {
             justifyContent: 'center',
             alignItems: 'center',
           }}
-        />{' '}
+        />
         Login with Google
       </Text>
     </View>

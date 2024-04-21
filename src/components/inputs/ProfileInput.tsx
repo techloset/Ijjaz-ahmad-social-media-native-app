@@ -45,7 +45,7 @@ export default function ProfileInput({
           },
         ]}
         placeholder={placeholder}
-        placeholderTextColor={'#D1D3D4'}
+        placeholderTextColor={Colors.lineColor}
         keyboardType="default"
         value={value}
         onChangeText={onChangeText}

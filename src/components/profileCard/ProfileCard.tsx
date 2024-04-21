@@ -1,15 +1,12 @@
 import React from 'react';
 import {View, Text, TouchableOpacity, Image} from 'react-native';
-import { customStyles } from '../../screens/FrontendStyle';
-import { User } from '../../constants/Images';
-import { styles } from '../../constants/GlobalStyle';
-import { Colors } from '../../constants/Colors';
+import {customStyles} from '../../screens/FrontendStyle';
+import {User} from '../../constants/Images';
+import {styles} from '../../constants/GlobalStyle';
+import {Colors} from '../../constants/Colors';
 import useProfileCard from './useProfileCard';
-import useProfileSelf from '../../screens/profileSelf/useProfileSelf';
-
 export default function ProfileCard() {
-  const {user} = useProfileCard()
-  console.log("🚀 ~ ProfileCard ~ user:", user)
+  const {user} = useProfileCard();
   return (
     <>
       <View style={[customStyles.border, {overflow: 'hidden'}]}>

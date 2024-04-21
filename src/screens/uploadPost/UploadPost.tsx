@@ -1,21 +1,13 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  Image,
-  Modal,
-  TextInput,
-  ScrollView,
-} from 'react-native';
+import {View, Text, TouchableOpacity, Image, ScrollView} from 'react-native';
 import {styles} from '../../constants/GlobalStyle';
-import {customStyles} from '../FrontendStyle';
 import {Colors} from '../../constants/Colors';
-import {ArrowDown, CrossIcon, UploadButton} from '../../constants/Images';
+import {UploadButton} from '../../constants/Images';
 import useUploadPost from './useUploadPost';
-import PageNavigateBtn from '../../components/buttons/PageNavigateBtn';
 import Input from '../../components/inputs/Input';
 import BottomModel from '../../components/CustomModel/BottomModel';
+import EditCancelBtn from '../../components/buttons/EditCancelBtn';
+import PrimaryBtn from '../../components/buttons/PrimaryBtn';
 export default function UploadPost() {
   const {
     isModalVisible,
@@ -25,7 +17,6 @@ export default function UploadPost() {
     loading,
     state,
     focusedText,
-    setFocusedText,
     handleChange,
     handleCamra,
     handleGallery,
@@ -38,33 +29,14 @@ export default function UploadPost() {
       <View
         style={[
           styles.flexRow,
-          {backgroundColor: Colors.inputbg, padding: 13},
+          {backgroundColor: Colors.inputbg, padding: 13, gap: 100},
         ]}>
-        <TouchableOpacity onPress={handleCancel} style={{flexGrow: 1}}>
-          <Text
-            style={[
-              styles.fontSm,
-              styles.fontWeightM,
-              styles.lineHightFirst,
-              styles.SpacingExSm,
-              {color: focusedText === 'cancel' ? 'red' : Colors.textclr},
-            ]}>
-            Cancel
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => setFocusedText('edit')}
-          style={{flexGrow: 1.3}}>
-          <Text
-            style={[
-              styles.fontM,
-              styles.fontWeightXl,
-              styles.SpacingM,
-              {color: focusedText === 'edit' ? 'blue' : Colors.textclr},
-            ]}>
-            Images <ArrowDown />
-          </Text>
-        </TouchableOpacity>
+        <EditCancelBtn
+          focusedText={focusedText}
+          onCancel={handleCancel}
+          onEdit={toggleModal}
+          label="Edit Post"
+        />
       </View>
       <View style={[styles.flexContainer, styles.horizantalyCenter]}>
         <ScrollView>
@@ -95,11 +67,17 @@ export default function UploadPost() {
               }
               type={'text'}
             />
-            <PageNavigateBtn onPress={uploadFile} label="Upload" />
+            <PrimaryBtn loading={loading} onPress={uploadFile} label="Upload" />
           </View>
         </ScrollView>
       </View>
-      <BottomModel isModalVisible={isModalVisible} onRequestClose={toggleModal} onPress={toggleModal} />
+      <BottomModel
+        isModalVisible={isModalVisible}
+        onRequestClose={toggleModal}
+        onPress={toggleModal}
+        handleCamra={handleCamra}
+        handleGallery={handleGallery}
+      />
     </>
   );
 }

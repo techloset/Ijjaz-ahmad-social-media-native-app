@@ -8,7 +8,7 @@ import {
 } from '@react-native-google-signin/google-signin';
 import {notify} from '../../../constants/GlobalStyle';
 import {useDispatch} from 'react-redux';
-import { login } from '../../../store/slices/authentication';
+import {login} from '../../../store/slices/authentication';
 const initialState = {email: '', password: ''};
 interface UserData {
   user?: {
@@ -87,7 +87,6 @@ const useLogin = () => {
     });
   }, []);
 
- 
   return {
     loading,
     setisloading,
@@ -97,7 +96,6 @@ const useLogin = () => {
     setUserInfo,
     handleChange,
     handleSubmite,
-    
   };
 };
 
