@@ -13,6 +13,7 @@ import {customStyles} from '../FrontendStyle';
 import {Colors} from '../../constants/Colors';
 import {postType} from '../../constants/AllTypes';
 import useProfile from './useProfile';
+import ProfileCard from '../../components/profileCard/ProfileCard';
 
 export default function Profile() {
   const {isModalVisible, modalImg, profile, toggleModal} = useProfile();
@@ -28,39 +29,7 @@ export default function Profile() {
           ]}>
           {profile.user.username}
         </Text>
-        <View style={[customStyles.border]}>
-          <TouchableOpacity>
-            {!profile.user.profileImage ? (
-              <User width="86" height="89" style={customStyles.profileImg} />
-            ) : (
-              <Image
-                source={{uri: profile.user.profileImage}}
-                style={customStyles.profileImg}
-              />
-            )}
-          </TouchableOpacity>
-        </View>
-        <View style={[styles.horizantalyCenter, customStyles.bio]}>
-          <Text
-            style={[
-              styles.fontSm,
-              styles.fontWeightXl,
-              styles.SpacingSm,
-              {color: Colors.textclr},
-            ]}>
-            {profile.user.username}
-          </Text>
-          <Text
-            style={[
-              customStyles.textCenter,
-              styles.fontSm,
-              styles.fontWeightM,
-              styles.lineHightFirst,
-              {color: Colors.textclr},
-            ]}>
-            {profile.user.bio}
-          </Text>
-        </View>
+      <ProfileCard state={profile.user} />
         <View>
           <TabsIcon />
         </View>
@@ -94,7 +63,7 @@ export default function Profile() {
           visible={isModalVisible}
           onRequestClose={toggleModal}>
           <View style={customStyles.modalContainer}>
-            <TouchableOpacity onPress={toggleModal} style={{}}>
+            <TouchableOpacity onPress={toggleModal}>
               <CrossIcon />
             </TouchableOpacity>
             {modalImg === '' ? (

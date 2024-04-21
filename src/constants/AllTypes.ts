@@ -12,6 +12,7 @@ export type handleChangeProps = {
 export type UserData = {
   username?: string;
   email: string;
+  password: string;
   role?: string;
   status?: string;
   uid?: string;

@@ -79,14 +79,6 @@ const useLogin = () => {
         return notify('Email|Password Error', 'plz try again', 'error');
       });
   };
-
-  useEffect(() => {
-    GoogleSignin.configure({
-      webClientId:
-        '653744361537-g09sb5tml9jree85icu3ddjbaoe5hvks.apps.googleusercontent.com',
-    });
-  }, []);
-
   return {
     loading,
     setisloading,

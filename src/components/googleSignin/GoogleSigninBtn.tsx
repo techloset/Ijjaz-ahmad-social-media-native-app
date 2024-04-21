@@ -1,5 +1,5 @@
 import {View, Text} from 'react-native';
-import React from 'react';
+import React, { useEffect } from 'react';
 import {Google} from '../../constants/Images';
 import {notify} from '../../constants/GlobalStyle';
 import {
@@ -9,6 +9,12 @@ import {
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 export default function GoogleSigninBtn() {
+  useEffect(() => {
+    GoogleSignin.configure({
+      webClientId:
+        '653744361537-g09sb5tml9jree85icu3ddjbaoe5hvks.apps.googleusercontent.com',
+    });
+  }, []);
   const googleSignin = async () => {
     await GoogleSignin.hasPlayServices({showPlayServicesUpdateDialog: true});
     // await GoogleSignin.signOut();

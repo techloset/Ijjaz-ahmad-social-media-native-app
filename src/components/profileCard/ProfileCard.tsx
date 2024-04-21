@@ -4,18 +4,24 @@ import {customStyles} from '../../screens/FrontendStyle';
 import {User} from '../../constants/Images';
 import {styles} from '../../constants/GlobalStyle';
 import {Colors} from '../../constants/Colors';
-import useProfileCard from './useProfileCard';
-export default function ProfileCard() {
-  const {user} = useProfileCard();
+import { userType } from '../../constants/AllTypes';
+// import useProfileCard from './useProfileCard';
+type ProfileCardProps = {
+  state: userType;
+}
+export default function ProfileCard({
+  state
+}: ProfileCardProps) {
+  // const {user} = useProfileCard();
   return (
     <>
       <View style={[customStyles.border, {overflow: 'hidden'}]}>
         <TouchableOpacity>
-          {user.profileImage === '' ? (
+          {state.profileImage === '' ? (
             <User width="86" height="86" style={customStyles.profileImg} />
           ) : (
             <Image
-              source={{uri: user.profileImage}}
+              source={{uri: state.profileImage}}
               style={customStyles.profileImg}
             />
           )}
@@ -29,7 +35,7 @@ export default function ProfileCard() {
             styles.SpacingSm,
             {color: Colors.textclr},
           ]}>
-          {user.username}
+          {state.username}
         </Text>
         <Text
           style={[
@@ -39,7 +45,7 @@ export default function ProfileCard() {
             styles.lineHightFirst,
             {color: Colors.textclr},
           ]}>
-          {user.bio}
+          {state.bio}
         </Text>
       </View>
     </>
