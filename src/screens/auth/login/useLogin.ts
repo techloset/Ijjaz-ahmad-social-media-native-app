@@ -1,14 +1,7 @@
-import {useEffect} from 'react';
-import {SigninUserData} from '../../../constants/AllTypes';
 import {useState} from 'react';
-import auth from '@react-native-firebase/auth';
-import {
-  GoogleSignin,
-  statusCodes,
-} from '@react-native-google-signin/google-signin';
 import {notify} from '../../../constants/GlobalStyle';
 import {useDispatch} from 'react-redux';
-import {login} from '../../../store/slices/authentication';
+import { signInUser } from '../../../store/slices/signIn';
 const initialState = {email: '', password: ''};
 interface UserData {
   user?: {
@@ -23,7 +16,7 @@ const useLogin = () => {
   const handleChange = (name: string, value: string): void => {
     setState(s => ({...s, [name]: value}));
   };
-  const handleSubmite = () => {
+  const handleSubmite =async () => {
     const {email, password} = state;
     let validRegex =
       /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
@@ -45,39 +38,11 @@ const useLogin = () => {
       );
     }
     let userData = {email, password};
+    
     setisloading(true);
-    logInUser(userData);
+    await dispatch(signInUser(userData) as any)
     setState(initialState);
-  };
-  const logInUser = (userData: SigninUserData): void => {
-    auth()
-      .signInWithEmailAndPassword(userData.email, userData.password)
-      .then(() => {
-        dispatch(login(userData as any));
-        notify(
-          'User Login Successfully!',
-          'wellcome to instagramMeToYou app',
-          'success',
-        );
-        setisloading(false);
-      })
-      .catch(error => {
-        if (error.code === 'auth/email-already-in-use') {
-          setisloading(false);
-          return notify(
-            'Email Error',
-            'That email address is already register!',
-            'error',
-          );
-        }
-
-        if (error.code === 'auth/invalid-email') {
-          setisloading(false);
-          return notify('Email|Password Error', 'plz try again', 'error');
-        }
-        setisloading(false);
-        return notify('Email|Password Error', 'plz try again', 'error');
-      });
+    setisloading(false);
   };
   return {
     loading,

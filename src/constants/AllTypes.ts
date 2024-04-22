@@ -98,6 +98,7 @@ export type userDataState = {
   isAuth: boolean;
   user: userType;
   isLoading: boolean;
+  isError: boolean;
 };
 export type rootStatePost = {
   posts: postState;

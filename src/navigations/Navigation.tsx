@@ -4,44 +4,32 @@ import {
   AUTH_STACK_NAVIGATION_SCREENS,
   STACK_NAVIGATION_SCREENS,
 } from './NavigationScreens';
-import {useDispatch, useSelector} from 'react-redux';
-import auth, {FirebaseAuthTypes} from '@react-native-firebase/auth';
-import {FirebaseUser, UserProfileData} from '../constants/AllTypes';
-import {login, selectAuthState} from '../store/slices/authentication';
-import firestore from '@react-native-firebase/firestore';
-import {FIRE_BASE_COLLECTION} from '../constants/Collections';
+import {useDispatch} from 'react-redux';
+import auth from '@react-native-firebase/auth';
+import {FirebaseUser, userType} from '../constants/AllTypes';
+import { readUserProfile} from '../store/slices/authentication';
 const Stack = createNativeStackNavigator();
 export default function Navigation() {
   const [isAppLoading, setIsAppLoading] = useState(true);
-  const isAuth = useSelector(selectAuthState);
+  const [user, setUser] = useState({});
   const dispatch = useDispatch();
   useEffect(() => {
-    auth().onAuthStateChanged((user: FirebaseUser | null) => {
+    auth().onAuthStateChanged( async (user :any) => {
       if (user) {
-        readUserProfile(user);
+        await dispatch(readUserProfile(user) as any ) ;
+        setUser(user)
+        setIsAppLoading(false);
       } else {
         setIsAppLoading(false);
       }
     });
     return;
-  }, [auth]);
+  }, []);
 
-  const readUserProfile = (user: FirebaseUser) => {
-    firestore()
-      .collection(FIRE_BASE_COLLECTION.USERS)
-      .doc(user.uid)
-      .onSnapshot(documentSnapshot => {
-        const userData: UserProfileData =
-          documentSnapshot.data() as UserProfileData;
-        dispatch(login(userData as FirebaseAuthTypes.User));
-      });
-    setTimeout(() => {
-      setIsAppLoading(false);
-    }, 2000);
-  };
+  
   return (
     <Stack.Navigator>
-      {isAuth.isAuth ? (
+      {user ? (
         <Stack.Group>
           {STACK_NAVIGATION_SCREENS.map((item, index) => {
             return (

@@ -4,11 +4,12 @@ import {notify} from '../../constants/GlobalStyle';
 import storage from '@react-native-firebase/storage';
 import {FIRE_BASE_COLLECTION} from '../../constants/Collections';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../../store/Store';
 import {userType} from '../../constants/AllTypes';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import { readUserProfile } from '../../store/slices/authentication';
 type RootStackParamList = {
   PROFILE_SELF: undefined;
 };
@@ -38,6 +39,8 @@ export default function useEditProfile() {
   const [imageSize, setImageSize] = useState<number | null>();
   const [focusedText, setFocusedText] = useState('');
   const navigation = useNavigation<ProfileScreenNavigationProp>();
+  const dispatch = useDispatch();
+
   useEffect(() => {
     let {name, username, website, bio, email, phone, gender, profileImage} =
       user;
@@ -112,14 +115,14 @@ export default function useEditProfile() {
       setLoading(false);
     }
   };
-
+  
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
-
+  
   const handleCancel = () => {
     let {name, username, website, bio, email, phone, gender, profileImage} =
-      user;
+    user;
     state.name = name;
     state.username = username;
     state.website = website;
@@ -134,17 +137,17 @@ export default function useEditProfile() {
     setImageType('');
     navigation.navigate('PROFILE_SELF');
   };
-
+  
   const handleSubmit = async () => {
     setFocusedText('done');
     try {
       setLoading(true);
-      var profileImg = '';
-      if (image !== '') {
+      let profileImg = '';
+      if (image) {
         profileImg = await uploadFile();
       }
 
-      if (profileImg === '') {
+      if (!profileImg) {
         state.profileImage = user.profileImage;
       } else {
         state.profileImage = profileImg;
@@ -154,6 +157,7 @@ export default function useEditProfile() {
         .doc(user.uid)
         .update(state);
       notify('Success', 'Profile successfully updated!', 'success');
+     await dispatch(readUserProfile(user) as any)
       setLoading(false);
     } catch (error) {
       notify('Error', 'Error updating profile', 'error');

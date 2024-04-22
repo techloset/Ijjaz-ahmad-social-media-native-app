@@ -1,12 +1,14 @@
-import {createSlice} from '@reduxjs/toolkit';
-import {UserData} from '../../constants/AllTypes';
-import {FIRE_BASE_COLLECTION} from '../../constants/Collections';
-import {login} from './authentication';
-import {notify} from '../../constants/GlobalStyle';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { UserData } from '../../constants/AllTypes';
+import { FIRE_BASE_COLLECTION } from '../../constants/Collections';
+import { notify } from '../../constants/GlobalStyle';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
-export const createUser = (userData: UserData) => {
-  return async (dispatch: any) => {
+// import { login } from './authentication';
+
+export const createUser = createAsyncThunk(
+  'signUp/createUser',
+  async (userData: UserData, { dispatch }) => {
     try {
       const userCredential = await auth().createUserWithEmailAndPassword(
         userData.email,
@@ -20,8 +22,9 @@ export const createUser = (userData: UserData) => {
         .doc(userData.uid)
         .set(userData);
 
-      dispatch(login(userData));
+      // dispatch(login(userData));
       notify('Success', 'User SignUp Successfully', 'success');
+      return userData;
     } catch (error: any) {
       if (error.code === 'auth/email-already-in-use') {
         notify(
@@ -34,15 +37,35 @@ export const createUser = (userData: UserData) => {
       } else {
         notify('Email|Password Error', 'Please try again', 'error');
       }
+      throw error;
     }
-  };
-};
+  }
+);
+
 const initialState = {};
-const userSlice = createSlice({
-  name: 'user',
+
+const signUp = createSlice({
+  name: 'signUp',
   initialState,
-  reducers: {},
+  reducers: {
+  },
+  extraReducers: (builder) => {
+   
+    builder.addCase(createUser.pending, (state) => {
+    // console.log("🚀 ~ builder.addCase ~ state: pending", state)
+  
+    });
+    builder.addCase(createUser.fulfilled, (state, action) => {
+    // console.log("🚀 ~ builder.addCase ~ action:fulfilled", action)
+    // console.log("🚀 ~ builder.addCase ~ state:fulfilled", state)
+  
+    });
+    builder.addCase(createUser.rejected, (state, action) => {
+    // console.log("🚀 ~ builder.addCase ~ action:rejected", action)
+    // console.log("🚀 ~ builder.addCase ~ state:rejected", state)
+    });
+  },
 });
 
-export const {} = userSlice.actions;
-export default userSlice.reducer;
+export const {} = signUp.actions;
+export default signUp.reducer;

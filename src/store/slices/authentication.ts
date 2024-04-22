@@ -1,11 +1,33 @@
-import {createSlice} from '@reduxjs/toolkit';
-import {RootState} from '../Store';
-import { userDataState } from '../../constants/AllTypes';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { RootState } from '../Store';
+import { FirebaseUser, UserProfileData, userDataState, userType } from '../../constants/AllTypes';
+import { FIRE_BASE_COLLECTION } from '../../constants/Collections';
+import { FirebaseAuthTypes } from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
 
-const initialState:userDataState = {
+export const readUserProfile = createAsyncThunk(
+  'readUserProfile/readUserProfile',
+  async (user: userType, { rejectWithValue }) => {
+    try {
+      const documentSnapshot = await firestore()
+        .collection(FIRE_BASE_COLLECTION.USERS)
+        .doc(user.uid)
+        .get();
+
+      const userData: UserProfileData = documentSnapshot.data() as UserProfileData;
+      return {userData}
+    } catch (error:any) {
+      // Handle error
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+const initialState: userDataState = {
   isAuth: false,
   user: {},
   isLoading: true,
+  isError: false,
 };
 
 const authSlice = createSlice({
@@ -16,7 +38,7 @@ const authSlice = createSlice({
       state.isAuth = true;
       state.user = action.payload;
     },
-    logout: state => {
+    logout: (state) => {
       state.isAuth = false;
       state.user = {};
     },
@@ -24,11 +46,22 @@ const authSlice = createSlice({
       state.isLoading = action.payload;
     },
   },
+  extraReducers: builder => {
+    builder.addCase(readUserProfile.pending, state => {
+      state.isLoading = true;
+      state.isError = false;
+    });
+    builder.addCase(readUserProfile.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.user = action.payload.userData;
+    });
+    builder.addCase(readUserProfile.rejected, state => {
+      state.isLoading = false;
+      state.isError = true;
+    });
+  },
 });
 
-export const {login, logout, setisLoading} = authSlice.actions;
-export const selectAuthState = (state: RootState) => {
-  return state.auth;
-};
+export const selectAuthState = (state: RootState) => state.auth;
 
 export default authSlice.reducer;

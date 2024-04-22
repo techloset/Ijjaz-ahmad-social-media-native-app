@@ -9,15 +9,17 @@ import { userType } from '../../constants/AllTypes';
 type ProfileCardProps = {
   state: userType;
 }
+
 export default function ProfileCard({
   state
 }: ProfileCardProps) {
+  console.log(state.profileImage)
   // const {user} = useProfileCard();
   return (
     <>
       <View style={[customStyles.border, {overflow: 'hidden'}]}>
         <TouchableOpacity>
-          {state.profileImage === '' ? (
+          {!state.profileImage ? (
             <User width="86" height="86" style={customStyles.profileImg} />
           ) : (
             <Image
