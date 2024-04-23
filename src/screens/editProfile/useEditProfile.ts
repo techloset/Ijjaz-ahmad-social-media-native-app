@@ -3,13 +3,18 @@ import firestore from '@react-native-firebase/firestore';
 import {notify} from '../../constants/GlobalStyle';
 import storage from '@react-native-firebase/storage';
 import {FIRE_BASE_COLLECTION} from '../../constants/Collections';
-import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../../store/Store';
 import {userType} from '../../constants/AllTypes';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import { readUserProfile } from '../../store/slices/authentication';
+import {readUserProfile} from '../../store/slices/authentication';
+import {
+  fetchImageFromCamera,
+  fetchImageFromGallery,
+  resetPickImage,
+} from '../../store/slices/PickImage';
+import {editProfileFun} from '../../store/slices/editProfile';
 type RootStackParamList = {
   PROFILE_SELF: undefined;
 };
@@ -28,15 +33,16 @@ const initialState: userType = {
   username: '',
   website: '',
 };
-
 export default function useEditProfile() {
+  const {image, type, size} = useSelector(
+    (state: RootState) => state.pickImage,
+  );
   const user = useSelector((state: RootState) => state.auth.user);
   const [loading, setLoading] = useState(false);
   const [state, setState] = useState(initialState);
   const [isModalVisible, setModalVisible] = useState(false);
-  const [image, setImage] = useState<string>('');
-  const [imageType, setImageType] = useState<string>('');
-  const [imageSize, setImageSize] = useState<number | null>();
+  const [imageType, setImageType] = useState<string>(type);
+  const [imageSize, setImageSize] = useState<number | null>(size);
   const [focusedText, setFocusedText] = useState('');
   const navigation = useNavigation<ProfileScreenNavigationProp>();
   const dispatch = useDispatch();
@@ -58,71 +64,22 @@ export default function useEditProfile() {
     setState(s => ({...s, [name]: value}));
   };
   const handleCamra = async () => {
-    const result = await launchCamera({mediaType: 'photo'});
-    if (
-      !result.didCancel &&
-      result.assets &&
-      result.assets.length > 0 &&
-      result.assets[0].uri &&
-      result.assets[0].type &&
-      result.assets[0].fileSize
-    ) {
-      setImage(result.assets[0].uri);
-      setImageType(result.assets[0].type);
-      let itemSize = result.assets[0].fileSize;
-      let size = itemSize / 1024;
-      size = Number(size.toFixed(2));
-      setImageSize(size);
-      setModalVisible(false);
-    }
+    await dispatch(fetchImageFromCamera() as any);
+    setModalVisible(false);
   };
 
   const handleGallery = async () => {
-    const result = await launchImageLibrary({mediaType: 'photo'});
-    if (
-      !result.didCancel &&
-      result.assets &&
-      result.assets.length > 0 &&
-      result.assets[0].uri &&
-      result.assets[0].type &&
-      result.assets[0].fileSize
-    ) {
-      setImage(result.assets[0].uri);
-      setImageType(result.assets[0].type);
-      let itemSize = result.assets[0].fileSize;
-      let size = itemSize / 1024;
-      size = Number(size.toFixed(2));
-      setImageSize(size);
-      setModalVisible(false);
-    }
+    await dispatch(fetchImageFromGallery() as any);
+    setModalVisible(false);
   };
 
-  const uploadFile = async () => {
-    try {
-      const fileType = imageType;
-      const uriPath = image;
-      const Type = fileType.split('/').pop();
-      const childPath = `/profile/${user.uid}/profileImage.${Type}`;
-      const reference = storage().ref().child(childPath);
-      await reference.putFile(uriPath);
-      const URL: string = await reference.getDownloadURL();
-      notify('success', 'image uploaded', 'success');
-      return URL;
-    } catch (err) {
-      notify('error', 'Post upload failed', 'error');
-      return '';
-    } finally {
-      setLoading(false);
-    }
-  };
-  
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
-  
+
   const handleCancel = () => {
     let {name, username, website, bio, email, phone, gender, profileImage} =
-    user;
+      user;
     state.name = name;
     state.username = username;
     state.website = website;
@@ -132,53 +89,29 @@ export default function useEditProfile() {
     state.gender = gender;
     state.profileImage = profileImage;
     setFocusedText('cancel');
-    setImage('');
     setImageSize(null);
     setImageType('');
     navigation.navigate('PROFILE_SELF');
   };
-  
+
   const handleSubmit = async () => {
     setFocusedText('done');
-    try {
-      setLoading(true);
-      let profileImg = '';
-      if (image) {
-        profileImg = await uploadFile();
-      }
-
-      if (!profileImg) {
-        state.profileImage = user.profileImage;
-      } else {
-        state.profileImage = profileImg;
-      }
-      await firestore()
-        .collection(FIRE_BASE_COLLECTION.USERS)
-        .doc(user.uid)
-        .update(state);
-      notify('Success', 'Profile successfully updated!', 'success');
-     await dispatch(readUserProfile(user) as any)
-      setLoading(false);
-    } catch (error) {
-      notify('Error', 'Error updating profile', 'error');
-      setLoading(false);
-    }
+    setLoading(true);
+    let uid = user.uid;
+    await dispatch(editProfileFun({type, image, uid, state}) as any);
+    await dispatch(readUserProfile(user) as any);
+    dispatch(resetPickImage());
+    setLoading(false);
   };
 
   return {
     user,
     loading,
-    setLoading,
     state,
-    setState,
     isModalVisible,
-    setModalVisible,
     image,
-    setImage,
     imageType,
-    setImageType,
     imageSize,
-    setImageSize,
     focusedText,
     setFocusedText,
     handleChange,

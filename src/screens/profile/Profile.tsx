@@ -54,7 +54,7 @@ export default function Profile() {
               </View>
             );
           })}
-        </View>
+        </View>   
       </ScrollView>
       <View style={customStyles.container}>
         <Modal

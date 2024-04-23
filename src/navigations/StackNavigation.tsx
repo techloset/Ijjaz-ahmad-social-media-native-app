@@ -4,20 +4,21 @@ import {
   AUTH_STACK_NAVIGATION_SCREENS,
   STACK_NAVIGATION_SCREENS,
 } from './NavigationScreens';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import auth from '@react-native-firebase/auth';
-import {FirebaseUser, userType} from '../constants/AllTypes';
-import { readUserProfile} from '../store/slices/authentication';
+import {readUserProfile} from '../store/slices/authentication';
+import {RootState} from '../store/Store';
+
 const Stack = createNativeStackNavigator();
-export default function Navigation() {
+export default function StackNavigation() {
+  const isAuth = useSelector((state: RootState) => state.auth.isAuth);
   const [isAppLoading, setIsAppLoading] = useState(true);
-  const [user, setUser] = useState({});
   const dispatch = useDispatch();
+
   useEffect(() => {
-    auth().onAuthStateChanged( async (user :any) => {
+    auth().onAuthStateChanged(async (user: any) => {
       if (user) {
-        await dispatch(readUserProfile(user) as any ) ;
-        setUser(user)
+        await dispatch(readUserProfile(user) as any);
         setIsAppLoading(false);
       } else {
         setIsAppLoading(false);
@@ -26,10 +27,9 @@ export default function Navigation() {
     return;
   }, []);
 
-  
   return (
     <Stack.Navigator>
-      {user ? (
+      {isAuth ? (
         <Stack.Group>
           {STACK_NAVIGATION_SCREENS.map((item, index) => {
             return (

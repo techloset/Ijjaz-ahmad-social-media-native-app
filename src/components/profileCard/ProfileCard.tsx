@@ -5,7 +5,6 @@ import {User} from '../../constants/Images';
 import {styles} from '../../constants/GlobalStyle';
 import {Colors} from '../../constants/Colors';
 import { userType } from '../../constants/AllTypes';
-// import useProfileCard from './useProfileCard';
 type ProfileCardProps = {
   state: userType;
 }
@@ -13,8 +12,6 @@ type ProfileCardProps = {
 export default function ProfileCard({
   state
 }: ProfileCardProps) {
-  console.log(state.profileImage)
-  // const {user} = useProfileCard();
   return (
     <>
       <View style={[customStyles.border, {overflow: 'hidden'}]}>

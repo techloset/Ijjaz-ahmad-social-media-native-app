@@ -12,8 +12,8 @@ export default function UploadPost() {
   const {
     isModalVisible,
     image,
-    imageType,
-    imageSize,
+    type,
+    size,
     loading,
     state,
     focusedText,
@@ -43,12 +43,12 @@ export default function UploadPost() {
           <View style={{marginVertical: 15}}>
             {image ? (
               <View>
-                <Text>Type: {imageType}</Text>
+                <Text>Type: {type}</Text>
                 <Image
                   source={{uri: image}}
                   style={{width: 300, height: 300}}
                 />
-                <Text>Size: {imageSize} KB</Text>
+                <Text>Size: {size} KB</Text>
               </View>
             ) : (
               <TouchableOpacity onPress={toggleModal}>

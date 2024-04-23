@@ -2,9 +2,9 @@ import React, { useEffect } from 'react'
 import SplashScreen from 'react-native-splash-screen';
 import { NavigationContainer } from '@react-navigation/native';
 import Toast from 'react-native-toast-message';
-import Navigation from './src/navigations/Navigation';
 import { Store } from './src/store/store';
 import { Provider } from 'react-redux';
+import StackNavigation from './src/navigations/StackNavigation';
 export default function App() {
   useEffect(() => {
     setTimeout(() => {
@@ -14,7 +14,7 @@ export default function App() {
   return (
     <NavigationContainer>
         <Provider store={Store}>
-          <Navigation />
+          <StackNavigation />
         </Provider>
       <Toast />
     </NavigationContainer>
