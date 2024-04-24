@@ -1,10 +1,12 @@
 import Home from '../screens/home/Home';
 import {
+  FoucsUser,
   HomeHover,
   HomeIcon,
   SmallLogo,
   UploadHover,
   UploadIcon,
+  User,
 } from '../constants/Images';
 import {BOTTOM_TAB_SCREEN} from '../constants/Navigation';
 import ProfileSelf from '../screens/profileSelf/ProfileSelf';
@@ -15,9 +17,46 @@ import {useSelector} from 'react-redux';
 import {RootState} from '../store/Store';
 import {styles} from '../constants/GlobalStyle';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-
+type TabProfileCardProps = {
+  profileImage: string | undefined;
+  focused: boolean;
+};
 const Tab = createBottomTabNavigator();
-
+const TabProfileCard = ({profileImage, focused}: TabProfileCardProps) => {
+  return (
+    <>
+      {profileImage ? (
+        <Image
+          source={{uri: profileImage}}
+          style={{
+            width: 27,
+            height: 27,
+            borderWidth: 1,
+            borderRadius: 100,
+            borderColor: focused ? Colors.textclr : Colors.lineColor,
+          }}
+        />
+      ) : focused ? (
+        <User
+          width={27}
+          height={27}
+          style={{
+            borderWidth: 3,
+            borderRadius: 100,
+          }}
+        />
+        
+      ) : (
+        <FoucsUser width={27}
+        height={27}  style={{
+          borderWidth: 3,
+          borderRadius: 100,
+          borderColor: Colors.primary,
+        }} />
+      )}
+    </>
+  );
+};
 function MyTabs() {
   const {HOME, UPLOAD_POST, PROFILE_SELF} = BOTTOM_TAB_SCREEN;
   const user = useSelector((state: RootState) => state.auth.user);
@@ -71,15 +110,10 @@ function MyTabs() {
             {color: Colors.textclr},
           ],
           tabBarIcon: ({focused}) => (
-            <Image
-              source={{uri: user.profileImage}}
-              style={{
-                width: 27,
-                height: 27,
-                borderWidth: 1,
-                borderRadius: 100,
-                borderColor: focused ? Colors.textclr : Colors.lineColor,
-              }}
+          
+            <TabProfileCard
+              profileImage={user.profileImage}
+              focused={focused}
             />
           ),
         }}

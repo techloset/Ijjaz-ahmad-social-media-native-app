@@ -1,8 +1,4 @@
 import {useEffect, useState} from 'react';
-import firestore from '@react-native-firebase/firestore';
-import {notify} from '../../constants/GlobalStyle';
-import storage from '@react-native-firebase/storage';
-import {FIRE_BASE_COLLECTION} from '../../constants/Collections';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../../store/Store';
 import {userType} from '../../constants/AllTypes';
@@ -41,8 +37,6 @@ export default function useEditProfile() {
   const [loading, setLoading] = useState(false);
   const [state, setState] = useState(initialState);
   const [isModalVisible, setModalVisible] = useState(false);
-  const [imageType, setImageType] = useState<string>(type);
-  const [imageSize, setImageSize] = useState<number | null>(size);
   const [focusedText, setFocusedText] = useState('');
   const navigation = useNavigation<ProfileScreenNavigationProp>();
   const dispatch = useDispatch();
@@ -88,9 +82,8 @@ export default function useEditProfile() {
     state.phone = phone;
     state.gender = gender;
     state.profileImage = profileImage;
+    dispatch(resetPickImage());
     setFocusedText('cancel');
-    setImageSize(null);
-    setImageType('');
     navigation.navigate('PROFILE_SELF');
   };
 
@@ -110,8 +103,6 @@ export default function useEditProfile() {
     state,
     isModalVisible,
     image,
-    imageType,
-    imageSize,
     focusedText,
     setFocusedText,
     handleChange,

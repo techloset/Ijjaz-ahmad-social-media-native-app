@@ -33,6 +33,7 @@ export default function FeedProfileCard({
           )}
         </TouchableOpacity>
         <View style={{marginStart: 10}}>
+        <TouchableOpacity onPress={onPress}>
           <Text
             style={[
               styles.fontM,
@@ -42,6 +43,7 @@ export default function FeedProfileCard({
             ]}>
             {username}
           </Text>
+        </TouchableOpacity>
           <Text
             style={[
               styles.fontSm,

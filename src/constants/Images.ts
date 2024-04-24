@@ -21,6 +21,7 @@ import HeartIcon from '../assets/images/heartIcon.svg';
 import HomeHover from '../assets/images/homeHover.svg';
 import UploadHover from '../assets/images/plusHover.svg';
 import Google from '../assets/images/google.svg';
+import FoucsUser from '../assets/images/foucsUser.svg';
 export {
   User,
   HomeIcon,
@@ -45,4 +46,5 @@ export {
   HomeHover,
   UploadHover,
   Google,
+  FoucsUser,
 };
