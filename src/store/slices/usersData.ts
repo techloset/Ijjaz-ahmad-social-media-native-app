@@ -1,7 +1,7 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
-import {postType, userType, usersDataState} from '../../constants/AllTypes';
+import {postType, userType, usersDataState} from '../../constants/allTypes';
 import firestore from '@react-native-firebase/firestore';
-import {FIRE_BASE_COLLECTION} from '../../constants/Collections';
+import {FIRE_BASE_COLLECTION} from '../../constants/collections';
 
 export const fetchUsersData = createAsyncThunk(
   'post/fetchUsersData',

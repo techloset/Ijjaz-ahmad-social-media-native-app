@@ -1,14 +1,14 @@
 import {View, Text, Image} from 'react-native';
 import React from 'react';
-import {styles} from '../constants/GlobalStyle';
-import {Colors} from '../constants/Colors';
+import {styles} from '../../constants/globalStyle';
+import {Colors} from '../../constants/colors';
 import {
   BookMark,
   Comment,
   HeartIcon,
   Telegram,
   ThreeDots,
-} from '../constants/Images';
+} from '../../constants/images';
 type FeedPostProps = {
   description: string | undefined;
   uri: string | undefined;

@@ -1,8 +1,8 @@
 import React from 'react';
 import {View, Text, ScrollView} from 'react-native';
-import {styles} from '../../../constants/GlobalStyle';
+import {styles} from '../../../constants/globalStyle';
 import {authstyles} from '../authStyle';
-import {LargLogo} from '../../../constants/Images';
+import {LargLogo} from '../../../constants/images';
 import useForgotPassword from './useForgotPassword';
 import Input from '../../../components/inputs/Input';
 import PrimaryBtn from '../../../components/buttons/PrimaryBtn';

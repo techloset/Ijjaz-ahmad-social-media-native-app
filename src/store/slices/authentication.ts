@@ -4,8 +4,8 @@ import {
   UserProfileData,
   userDataState,
   userType,
-} from '../../constants/AllTypes';
-import {FIRE_BASE_COLLECTION} from '../../constants/Collections';
+} from '../../constants/allTypes';
+import {FIRE_BASE_COLLECTION} from '../../constants/collections';
 import firestore from '@react-native-firebase/firestore';
 
 export const readUserProfile = createAsyncThunk(

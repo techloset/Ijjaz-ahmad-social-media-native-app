@@ -1,11 +1,11 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 import storage from '@react-native-firebase/storage';
 import firestore from '@react-native-firebase/firestore';
-import {notify} from '../../constants/GlobalStyle';
+import {notify} from '../../constants/globalStyle';
 
-import {FIRE_BASE_COLLECTION} from '../../constants/Collections';
-import {userType} from '../../constants/AllTypes';
-type EditProfileFunProps = {
+import {FIRE_BASE_COLLECTION} from '../../constants/collections';
+import {userType} from '../../constants/allTypes';
+type UpdateProfileFunProps = {
   type: string;
   image: string;
   uid: string | undefined;
@@ -30,9 +30,9 @@ const uploadFileFun = async ({type, image, uid}: uploadFileFunProps) => {
     return '';
   }
 };
-export const editProfileFun = createAsyncThunk(
+export const UpdateProfileFun = createAsyncThunk(
   'post/upload',
-  async ({type, image, uid, state}: EditProfileFunProps) => {
+  async ({type, image, uid, state}: UpdateProfileFunProps) => {
     try {
       if (image) {
         let profileImg = '';
@@ -58,14 +58,14 @@ const uploadPost = createSlice({
   initialState,
   reducers: {},
   extraReducers: builder => {
-    builder.addCase(editProfileFun.pending, state => {
+    builder.addCase(UpdateProfileFun.pending, state => {
       // console.log("🚀 ~ builder.addCase ~ state: pending", state);
     });
-    builder.addCase(editProfileFun.fulfilled, (state, action) => {
+    builder.addCase(UpdateProfileFun.fulfilled, (state, action) => {
       // console.log("🚀 ~ builder.addCase ~ action:fulfilled", action);
       // console.log("🚀 ~ builder.addCase ~ state:fulfilled", state);
     });
-    builder.addCase(editProfileFun.rejected, (state, action) => {
+    builder.addCase(UpdateProfileFun.rejected, (state, action) => {
       // console.log("🚀 ~ builder.addCase ~ action:rejected", action);
       // console.log("🚀 ~ builder.addCase ~ state:rejected", state);
     });

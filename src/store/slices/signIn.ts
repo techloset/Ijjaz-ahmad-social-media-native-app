@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { SigninUserData } from '../../constants/AllTypes';
-import { notify } from '../../constants/GlobalStyle';
+import { SigninUserData } from '../../constants/allTypes';
+import { notify } from '../../constants/globalStyle';
 import auth from '@react-native-firebase/auth';
 // import { login } from './authentication';
 

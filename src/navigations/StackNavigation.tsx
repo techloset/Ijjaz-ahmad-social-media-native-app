@@ -3,7 +3,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {
   AUTH_STACK_NAVIGATION_SCREENS,
   STACK_NAVIGATION_SCREENS,
-} from './NavigationScreens';
+} from './navigationScreens';
 import {useDispatch, useSelector} from 'react-redux';
 import auth from '@react-native-firebase/auth';
 import {readUserProfile} from '../store/slices/authentication';

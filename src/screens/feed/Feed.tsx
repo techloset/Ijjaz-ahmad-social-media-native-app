@@ -1,14 +1,14 @@
 import {View, ScrollView} from 'react-native';
 import React from 'react';
-import {styles} from '../../constants/GlobalStyle';
-import {STACK_SCREENS} from '../../constants/Navigation';
-import {allPosts, postType, routeProps} from '../../constants/AllTypes';
-import useHome from './useHome';
+import {styles} from '../../constants/globalStyle';
+import {allPosts, postType, routeProps} from '../../constants/allTypes';
+import useFeed from './useFeed';
 import FeedProfileCard from '../../components/FeedProfileCard';
-import FeedPost from '../../components/FeedPost';
-import CommentSection from '../../components/CommentSection';
-export default function Home({navigation}: routeProps) {
-  const {user, usersData} = useHome();
+import FeedPost from '../../components/feedPost/FeedPost';
+import CommentSection from '../../components/comment/CommentSection';
+import { STACK_SCREENS } from '../../constants/navigationName';
+export default function Feed({navigation}: routeProps) {
+  const {user, usersData} = useFeed();
   return (
     <View style={[styles.flexContainer]}>
       <ScrollView>
@@ -22,7 +22,7 @@ export default function Home({navigation}: routeProps) {
                       uri={item.user?.profileImage}
                       username={item.user?.username}
                       onPress={() => {
-                        navigation.navigate(STACK_SCREENS.PROFILE, {
+                        navigation.navigate(STACK_SCREENS.PUBLICK_PROFILE, {
                           profile: item,
                         });
                       }}

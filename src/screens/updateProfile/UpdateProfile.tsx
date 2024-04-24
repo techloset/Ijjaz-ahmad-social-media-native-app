@@ -1,13 +1,13 @@
 import {View, Text, ScrollView} from 'react-native';
 import React from 'react';
-import {styles} from '../../constants/GlobalStyle';
-import {Colors} from '../../constants/Colors';
-import useEditProfile from './useEditProfile';
+import {styles} from '../../constants/globalStyle';
+import {Colors} from '../../constants/colors';
+import useUpdateProfile from './useUpdataProfile';
 import ActionBtnsRow from '../../components/buttons/ActionBtnsRow';
 import ProfileInput from '../../components/inputs/ProfileInput';
-import BottomModel from '../../components/CustomModel/BottomModel';
+import BottomModel from '../../components/customModel/BottomModel';
 import ProfileAvatar from '../../components/profileCard/ProfileAvatar';
-export default function EditProfile() {
+export default function UpdateProfile() {
   const {
     state,
     isModalVisible,
@@ -21,7 +21,7 @@ export default function EditProfile() {
     handleCancel,
     handleSubmit,
     loading,
-  } = useEditProfile();
+  } = useUpdateProfile();
   return (
     <View style={[styles.flexContainer]}>
       <ActionBtnsRow

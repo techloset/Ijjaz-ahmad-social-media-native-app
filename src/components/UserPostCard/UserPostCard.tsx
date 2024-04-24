@@ -1,11 +1,11 @@
 import {Image, ScrollView, TouchableOpacity, View} from 'react-native';
 import React from 'react';
-import {postType} from '../../constants/AllTypes';
-import usePostCard from './usePostCard';
-import CustomModel from '../CustomModel/CustomModel';
+import {postType} from '../../constants/allTypes';
+import useUserPostCard from './useUserPostCard';
+import CustomModel from '../customModel/CustomModel';
 export default function UserPostCard() {
   const {isModalVisible, postId, modalImg, userPosts, toggleModal} =
-    usePostCard();
+  useUserPostCard();
   return (
     <>
       <ScrollView>

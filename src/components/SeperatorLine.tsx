@@ -1,8 +1,8 @@
 import {View, Text} from 'react-native';
 import React from 'react';
 import {authstyles} from '../screens/auth/authStyle';
-import {styles} from '../constants/GlobalStyle';
-import {Colors} from '../constants/Colors';
+import {styles} from '../constants/globalStyle';
+import {Colors} from '../constants/colors';
 export default function SeperatorLine() {
   return (
     <View style={{display: 'flex', flexDirection: 'row', marginTop: 41}}>

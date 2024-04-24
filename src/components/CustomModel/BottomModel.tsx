@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Modal, TouchableOpacity} from 'react-native';
-import {Colors} from '../../constants/Colors';
+import {Colors} from '../../constants/colors';
 import PageNavigateBtn from '../buttons/PageNavigateBtn';
 
 type BottomModelProps = {

@@ -1,8 +1,8 @@
 import Toast from 'react-native-toast-message';
 import {StyleSheet} from 'react-native';
-import {Colors} from './Colors';
-import {ToastType} from './AllTypes';
-import {Fonts} from './Fonts';
+import {Colors} from './colors';
+import {ToastType} from './allTypes';
+import {Fonts} from './fonts';
 
 const styles = StyleSheet.create({
   flexContainer: {

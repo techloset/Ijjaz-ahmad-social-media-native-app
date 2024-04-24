@@ -1,10 +1,10 @@
 import React from 'react';
 import {View, Text, TouchableOpacity, Image} from 'react-native';
-import {customStyles} from '../../screens/FrontendStyle';
-import {User} from '../../constants/Images';
-import {styles} from '../../constants/GlobalStyle';
-import {Colors} from '../../constants/Colors';
-import { userType } from '../../constants/AllTypes';
+import {customStyles} from '../../screens/screenStyling';
+import {User} from '../../constants/images';
+import {styles} from '../../constants/globalStyle';
+import {Colors} from '../../constants/colors';
+import { userType } from '../../constants/allTypes';
 type ProfileCardProps = {
   state: userType;
 }

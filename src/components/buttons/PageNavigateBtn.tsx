@@ -1,8 +1,8 @@
 import {View, Text, TouchableOpacity} from 'react-native';
 import React from 'react';
-import {customStyles} from '../../screens/FrontendStyle';
-import {styles} from '../../constants/GlobalStyle';
-import {Colors} from '../../constants/Colors';
+import {customStyles} from '../../screens/screenStyling';
+import {styles} from '../../constants/globalStyle';
+import {Colors} from '../../constants/colors';
 type PageNavigateBtnProps = {
   onPress: () => void;
   label: string;

@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../../store/Store';
-import {userType} from '../../constants/AllTypes';
+import {userType} from '../../constants/allTypes';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {readUserProfile} from '../../store/slices/authentication';
@@ -10,9 +10,9 @@ import {
   fetchImageFromGallery,
   resetPickImage,
 } from '../../store/slices/PickImage';
-import {editProfileFun} from '../../store/slices/editProfile';
+import { UpdateProfileFun } from '../../store/slices/editProfile';
 type RootStackParamList = {
-  PROFILE_SELF: undefined;
+  MY_PROFILE: undefined;
 };
 type ProfileScreenNavigationProp =
   NativeStackNavigationProp<RootStackParamList>;
@@ -29,7 +29,7 @@ const initialState: userType = {
   username: '',
   website: '',
 };
-export default function useEditProfile() {
+export default function useUpdateProfile() {
   const {image, type, size} = useSelector(
     (state: RootState) => state.pickImage,
   );
@@ -84,14 +84,14 @@ export default function useEditProfile() {
     state.profileImage = profileImage;
     dispatch(resetPickImage());
     setFocusedText('cancel');
-    navigation.navigate('PROFILE_SELF');
+    navigation.navigate('MY_PROFILE');
   };
 
   const handleSubmit = async () => {
     setFocusedText('done');
     setLoading(true);
     let uid = user.uid;
-    await dispatch(editProfileFun({type, image, uid, state}) as any);
+    await dispatch(UpdateProfileFun({type, image, uid, state}) as any);
     await dispatch(readUserProfile(user) as any);
     dispatch(resetPickImage());
     setLoading(false);

@@ -1,9 +1,9 @@
 import {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {rootStatePost} from '../../constants/AllTypes';
+import {rootStatePost} from '../../constants/allTypes';
 import {AppDispatch, RootState} from '../../store/store';
 import {fetchUsersData} from '../../store/slices/usersData';
-export default function useHome() {
+export default function useFeed() {
   const user = useSelector((state: RootState) => state.auth.user);
   const usersData = useSelector(
     (state: rootStatePost) => state.usersData.usersData,

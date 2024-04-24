@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import {notify} from '../../../constants/GlobalStyle';
+import {notify} from '../../../constants/globalStyle';
 import {useDispatch} from 'react-redux';
 import { signInUser } from '../../../store/slices/signIn';
 const initialState = {email: '', password: ''};

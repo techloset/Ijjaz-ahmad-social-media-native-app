@@ -1,8 +1,8 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
-import {postState, postType} from '../../constants/AllTypes';
+import {postState, postType} from '../../constants/allTypes';
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
-import { FIRE_BASE_COLLECTION } from '../../constants/Collections';
+import { FIRE_BASE_COLLECTION } from '../../constants/collections';
 export const fetchPost = createAsyncThunk('post/fetchPost', async () => {
   try {
     const currentUser = auth().currentUser;

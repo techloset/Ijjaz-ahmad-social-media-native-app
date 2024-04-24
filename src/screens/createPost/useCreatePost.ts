@@ -9,7 +9,7 @@ import {
 } from '../../store/slices/PickImage';
 import {uploadPostFun} from '../../store/slices/uploadPost';
 const initialState = {description: ''};
-export default function useUploadPost() {
+export default function useCreatePost() {
   const [isModalVisible, setModalVisible] = useState(false);
   const [loading, setLoading] = useState(false);
   const [state, setState] = useState(initialState);
@@ -25,12 +25,12 @@ export default function useUploadPost() {
   };
 
   const handleCamra = async () => {
-    await dispatch(fetchImageFromCamera() as any);
+    await dispatch(fetchImageFromCamera());
     setModalVisible(false);
   };
 
   const handleGallery = async () => {
-    await dispatch(fetchImageFromGallery() as any);
+    await dispatch(fetchImageFromGallery());
     setModalVisible(false);
   };
 

@@ -1,8 +1,8 @@
 import {View, Text} from 'react-native';
 import React from 'react';
-import {styles} from '../constants/GlobalStyle';
-import {ProfileIcon} from '../constants/Images';
-import {Colors} from '../constants/Colors';
+import {styles} from '../../constants/globalStyle';
+import {ProfileIcon} from '../../constants/images';
+import {Colors} from '../../constants/colors';
 
 export default function CommentSection() {
   return (

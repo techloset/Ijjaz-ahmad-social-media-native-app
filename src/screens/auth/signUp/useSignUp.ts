@@ -1,6 +1,6 @@
-import {UserData} from '../../../constants/AllTypes';
+import {UserData} from '../../../constants/allTypes';
 import {useState} from 'react';
-import {notify} from '../../../constants/GlobalStyle';
+import {notify} from '../../../constants/globalStyle';
 import {useDispatch} from 'react-redux';
 import { createUser } from '../../../store/slices/signUp';
 const initialState = {

@@ -1,9 +1,9 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 import storage from '@react-native-firebase/storage';
 import firestore, {firebase} from '@react-native-firebase/firestore';
-import {notify} from '../../constants/GlobalStyle';
+import {notify} from '../../constants/globalStyle';
 
-import {FIRE_BASE_COLLECTION} from '../../constants/Collections';
+import {FIRE_BASE_COLLECTION} from '../../constants/collections';
 type uploadPostFunProps = {
   type: string;
   image: string;

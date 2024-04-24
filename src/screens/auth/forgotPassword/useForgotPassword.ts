@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import {notify} from '../../../constants/GlobalStyle';
+import {notify} from '../../../constants/globalStyle';
 import auth from '@react-native-firebase/auth';
-import {ForgotData} from '../../../constants/AllTypes';
+import {ForgotData} from '../../../constants/allTypes';
 
 const initialState = {email: ''};
 

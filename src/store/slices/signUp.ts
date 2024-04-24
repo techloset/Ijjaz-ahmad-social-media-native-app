@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { UserData } from '../../constants/AllTypes';
-import { FIRE_BASE_COLLECTION } from '../../constants/Collections';
-import { notify } from '../../constants/GlobalStyle';
+import { UserData } from '../../constants/allTypes';
+import { FIRE_BASE_COLLECTION } from '../../constants/collections';
+import { notify } from '../../constants/globalStyle';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 // import { login } from './authentication';

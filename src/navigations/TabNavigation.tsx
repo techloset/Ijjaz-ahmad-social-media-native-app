@@ -1,4 +1,4 @@
-import Home from '../screens/home/Home';
+import Feed from '../screens/feed/Feed';
 import {
   FoucsUser,
   HomeHover,
@@ -7,15 +7,15 @@ import {
   UploadHover,
   UploadIcon,
   User,
-} from '../constants/Images';
-import {BOTTOM_TAB_SCREEN} from '../constants/Navigation';
-import ProfileSelf from '../screens/profileSelf/ProfileSelf';
-import UploadPost from '../screens/uploadPost/UploadPost';
+} from '../constants/images';
+import {BOTTOM_TAB_SCREEN} from '../constants/navigationName';
+import MyProfile from '../screens/myProfile/MyProfile';
+import UploadPost from '../screens/createPost/CreatePost';
 import {Image} from 'react-native';
-import {Colors} from '../constants/Colors';
+import {Colors} from '../constants/colors';
 import {useSelector} from 'react-redux';
 import {RootState} from '../store/Store';
-import {styles} from '../constants/GlobalStyle';
+import {styles} from '../constants/globalStyle';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 type TabProfileCardProps = {
   profileImage: string | undefined;
@@ -58,7 +58,7 @@ const TabProfileCard = ({profileImage, focused}: TabProfileCardProps) => {
   );
 };
 function MyTabs() {
-  const {HOME, UPLOAD_POST, PROFILE_SELF} = BOTTOM_TAB_SCREEN;
+  const {FEED, UPLOAD_POST, MY_PROFILE} = BOTTOM_TAB_SCREEN;
   const user = useSelector((state: RootState) => state.auth.user);
   return (
     <Tab.Navigator
@@ -66,8 +66,8 @@ function MyTabs() {
         tabBarStyle: {paddingTop: 10},
       })}>
       <Tab.Screen
-        name={HOME}
-        component={Home}
+        name={FEED}
+        component={Feed}
         options={{
           headerShadowVisible: true,
           title: '',
@@ -96,8 +96,8 @@ function MyTabs() {
         }}
       />
       <Tab.Screen
-        name={PROFILE_SELF}
-        component={ProfileSelf}
+        name={MY_PROFILE}
+        component={MyProfile}
         options={{
           headerShadowVisible: false,
           title: '',

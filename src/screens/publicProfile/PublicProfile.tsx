@@ -7,16 +7,16 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import React from 'react';
-import {styles} from '../../constants/GlobalStyle';
-import {CrossIcon, TabsIcon, User} from '../../constants/Images';
-import {customStyles} from '../FrontendStyle';
-import {Colors} from '../../constants/Colors';
-import {postType} from '../../constants/AllTypes';
-import useProfile from './useProfile';
+import {styles} from '../../constants/globalStyle';
+import {CrossIcon, TabsIcon, User} from '../../constants/images';
+import {customStyles} from '../screenStyling';
+import {Colors} from '../../constants/colors';
+import {postType} from '../../constants/allTypes';
+import usePublicProfile from './usePublicProfile';
 import ProfileCard from '../../components/profileCard/ProfileCard';
 
-export default function Profile() {
-  const {isModalVisible, modalImg, profile, toggleModal} = useProfile();
+export default function PublicProfile() {
+  const {isModalVisible, modalImg, profile, toggleModal} = usePublicProfile();
   return (
     <>
       <View style={[styles.flexContainer]}>

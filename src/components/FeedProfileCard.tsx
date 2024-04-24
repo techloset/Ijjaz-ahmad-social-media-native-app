@@ -1,8 +1,8 @@
 import {View, Text, TouchableOpacity, Image} from 'react-native';
 import React from 'react';
-import {styles} from '../constants/GlobalStyle';
-import {ThreeDots, User} from '../constants/Images';
-import {Colors} from '../constants/Colors';
+import {styles} from '../constants/globalStyle';
+import {ThreeDots, User} from '../constants/images';
+import {Colors} from '../constants/colors';
 type FeedProfileCardProps = {
   uri: string | undefined;
   username: string | undefined;

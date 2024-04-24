@@ -1,9 +1,9 @@
 import {useEffect, useState} from 'react';
-import {rootStatePost} from '../../constants/AllTypes';
+import {rootStatePost} from '../../constants/allTypes';
 import {useDispatch, useSelector} from 'react-redux';
 import {AppDispatch} from '../../store/store';
 import {fetchPost} from '../../store/slices/postSlice';
-export default function usePostCard() {
+export default function useUserPostCard() {
   const [isModalVisible, setModalVisible] = useState(false);
   const [postId, setPostId] = useState('');
   const [modalImg, setModalImg] = useState('');

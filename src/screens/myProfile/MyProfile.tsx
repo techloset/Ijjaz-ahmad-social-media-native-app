@@ -1,14 +1,14 @@
 import React from 'react';
 import {View} from 'react-native';
-import {styles} from '../../constants/GlobalStyle';
-import {TabsIcon} from '../../constants/Images';
-import {STACK_SCREENS} from '../../constants/Navigation';
-import useProfileSelf from './useProfileSelf';
+import {styles} from '../../constants/globalStyle';
+import {TabsIcon} from '../../constants/images';
+import {STACK_SCREENS} from '../../constants/navigationName';
+import useMyProfile from './useMyProfile';
 import PageNavigateBtn from '../../components/buttons/PageNavigateBtn';
 import ProfileCard from '../../components/profileCard/ProfileCard';
-import UserPostCard from '../../components/UserPostCard/UserPostCard';
-export default function ProfileSelf({navigation}: any) {
-  const {handleLogout, user} = useProfileSelf();
+import UserPostCard from '../../components/userPostCard/UserPostCard';
+export default function MyProfile({navigation}: any) {
+  const {handleLogout, user} = useMyProfile();
   return (
     <View style={[styles.flexContainer]}>
       <View style={[styles.horizantalyCenter]}>

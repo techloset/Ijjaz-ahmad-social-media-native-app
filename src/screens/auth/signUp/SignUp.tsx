@@ -1,9 +1,9 @@
 import React from 'react';
 import {View, Text, ScrollView} from 'react-native';
-import {routeProps} from '../../../constants/AllTypes';
-import {styles} from '../../../constants/GlobalStyle';
-import {AUTH_STACK_SCREEN} from '../../../constants/Navigation';
-import {Colors} from '../../../constants/Colors';
+import {routeProps} from '../../../constants/allTypes';
+import {styles} from '../../../constants/globalStyle';
+import {AUTH_STACK_SCREEN} from '../../../constants/navigationName';
+import {Colors} from '../../../constants/colors';
 import useSignUp from './useSignUp';
 import TextLogo from '../../../components/TextLogo';
 import Input from '../../../components/inputs/Input';

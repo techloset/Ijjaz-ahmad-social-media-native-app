@@ -7,16 +7,15 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import React, {useState} from 'react';
-import {customStyles} from '../../screens/FrontendStyle';
-import {CrossIcon, Delete} from '../../constants/Images';
-import {Colors} from '../../constants/Colors';
-import {FIRE_BASE_COLLECTION} from '../../constants/Collections';
-import {notify} from '../../constants/GlobalStyle';
+import {customStyles} from '../../screens/screenStyling';
+import {CrossIcon, Delete} from '../../constants/images';
+import {Colors} from '../../constants/colors';
+import {FIRE_BASE_COLLECTION} from '../../constants/collections';
+import {notify} from '../../constants/globalStyle';
 import {firebase} from '@react-native-firebase/storage';
 import {AppDispatch} from '../../store/store';
 import {fetchPost} from '../../store/slices/postSlice';
 import {useDispatch} from 'react-redux';
-import usePostCard from '../UserPostCard/usePostCard';
 
 type ModelProps = {
   isModalVisible: boolean;

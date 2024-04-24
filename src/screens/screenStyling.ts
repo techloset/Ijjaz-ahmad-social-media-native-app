@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {Colors} from '../constants/Colors';
+import {Colors} from '../constants/colors';
 
 export const customStyles = StyleSheet.create({
   border: {
@@ -20,7 +20,6 @@ export const customStyles = StyleSheet.create({
   textCenter: {
     textAlign: 'center',
   },
-
   btn: {
     borderWidth: 1,
     borderColor: Colors.borderColor,

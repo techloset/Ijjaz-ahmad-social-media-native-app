@@ -1,7 +1,7 @@
 import {Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
-import {styles} from '../../constants/GlobalStyle';
-import {Colors} from '../../constants/Colors';
+import {styles} from '../../constants/globalStyle';
+import {Colors} from '../../constants/colors';
 type BtnProps = {loading: boolean; onPress: () => void; label: string};
 export default function PrimaryBtn({loading, onPress, label}: BtnProps) {
   return (

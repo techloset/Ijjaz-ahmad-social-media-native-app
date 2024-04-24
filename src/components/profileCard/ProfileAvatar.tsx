@@ -1,10 +1,10 @@
 import React from 'react';
 import {View, Image} from 'react-native';
-import {styles} from '../../constants/GlobalStyle';
-import {User} from '../../constants/Images';
+import {styles} from '../../constants/globalStyle';
+import {User} from '../../constants/images';
 import TextLink from '../TextLink';
-import {userType} from '../../constants/AllTypes';
-import {customStyles} from '../../screens/FrontendStyle';
+import {userType} from '../../constants/allTypes';
+import {customStyles} from '../../screens/screenStyling';
 
 type ProfileAvatarProps = {
   image?: string;

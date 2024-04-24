@@ -1,7 +1,7 @@
 import {View, Text} from 'react-native';
 import React, { useEffect } from 'react';
-import {Google} from '../../constants/Images';
-import {notify} from '../../constants/GlobalStyle';
+import {Google} from '../../constants/images';
+import {notify} from '../../constants/globalStyle';
 import {
   GoogleSignin,
   statusCodes,

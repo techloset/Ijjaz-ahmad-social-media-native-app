@@ -1,11 +1,11 @@
 import React from 'react';
 import {View, Text, TouchableOpacity, Image, ScrollView} from 'react-native';
-import {styles} from '../../constants/GlobalStyle';
-import {Colors} from '../../constants/Colors';
-import {UploadButton} from '../../constants/Images';
-import useUploadPost from './useUploadPost';
+import {styles} from '../../constants/globalStyle';
+import {Colors} from '../../constants/colors';
+import {UploadButton} from '../../constants/images';
+import useCreatePost from './useCreatePost';
 import Input from '../../components/inputs/Input';
-import BottomModel from '../../components/CustomModel/BottomModel';
+import BottomModel from '../../components/customModel/BottomModel';
 import EditCancelBtn from '../../components/buttons/EditCancelBtn';
 import PrimaryBtn from '../../components/buttons/PrimaryBtn';
 export default function UploadPost() {
@@ -23,7 +23,7 @@ export default function UploadPost() {
     uploadFile,
     handleCancel,
     toggleModal,
-  } = useUploadPost();
+  } = useCreatePost();
   return (
     <>
       <View
