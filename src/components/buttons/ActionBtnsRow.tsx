@@ -3,13 +3,7 @@ import {View, Text, TouchableOpacity, ActivityIndicator} from 'react-native';
 import {styles} from '../../constants/globalStyle';
 import {Colors} from '../../constants/colors';
 import EditCancelBtn from './EditCancelBtn';
-interface ActionButtonsRowProps {
-  focusedText: string;
-  loading: boolean;
-  onCancel: () => void;
-  onEdit: () => void;
-  onSubmit: () => void;
-}
+import { ActionButtonsRowProps } from '../../constants/allTypes';
 
 const ActionBtnsRow: React.FC<ActionButtonsRowProps> = ({
   focusedText,

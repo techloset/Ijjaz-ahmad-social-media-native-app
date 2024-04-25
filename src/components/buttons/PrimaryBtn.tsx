@@ -2,8 +2,9 @@ import {Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import {styles} from '../../constants/globalStyle';
 import {Colors} from '../../constants/colors';
-type BtnProps = {loading: boolean; onPress: () => void; label: string};
-export default function PrimaryBtn({loading, onPress, label}: BtnProps) {
+import { PrimaryBtnProps } from '../../constants/allTypes';
+
+export default function PrimaryBtn({loading, onPress, label}: PrimaryBtnProps) {
   return (
     <View style={{width: '90%'}}>
       {loading ? (

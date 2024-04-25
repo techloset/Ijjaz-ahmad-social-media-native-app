@@ -1,15 +1,12 @@
 import {useEffect, useState} from 'react';
-import {rootStatePost} from '../../constants/allTypes';
 import {useDispatch, useSelector} from 'react-redux';
-import {AppDispatch} from '../../store/store';
-import {fetchPost} from '../../store/slices/postSlice';
+import {AppDispatch, RootState} from '../../store/store';
+import {fetchPost} from '../../store/slices/myPosts';
 export default function useUserPostCard() {
   const [isModalVisible, setModalVisible] = useState(false);
   const [postId, setPostId] = useState('');
   const [modalImg, setModalImg] = useState('');
-  const userPosts = useSelector(
-    (state: rootStatePost) => state.posts.userPosts,
-  );
+  const userPosts = useSelector((state: RootState) => state.myPosts.userPosts);
   const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
     dispatch(fetchPost());
@@ -19,7 +16,6 @@ export default function useUserPostCard() {
     setModalImg(item.URL);
     setModalVisible(!isModalVisible);
   };
-
   return {
     isModalVisible,
     setModalVisible,

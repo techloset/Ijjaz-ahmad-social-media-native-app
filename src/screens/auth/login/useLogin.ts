@@ -1,17 +1,11 @@
 import {useState} from 'react';
 import {notify} from '../../../constants/globalStyle';
 import {useDispatch} from 'react-redux';
-import { signInUser } from '../../../store/slices/signIn';
+import { signInUser } from '../../../store/slices/authentication';
 const initialState = {email: '', password: ''};
-interface UserData {
-  user?: {
-    name?: string;
-  };
-}
 const useLogin = () => {
   const [loading, setisloading] = useState(false);
   const [state, setState] = useState(initialState);
-  const [userinfo, setUserInfo] = useState<UserData | null>(null);
   const dispatch = useDispatch();
   const handleChange = (name: string, value: string): void => {
     setState(s => ({...s, [name]: value}));
@@ -49,8 +43,6 @@ const useLogin = () => {
     setisloading,
     state,
     setState,
-    userinfo,
-    setUserInfo,
     handleChange,
     handleSubmite,
   };

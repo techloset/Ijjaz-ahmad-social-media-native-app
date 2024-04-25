@@ -2,7 +2,7 @@ import {UserData} from '../../../constants/allTypes';
 import {useState} from 'react';
 import {notify} from '../../../constants/globalStyle';
 import {useDispatch} from 'react-redux';
-import { createUser } from '../../../store/slices/signUp';
+import { createUser } from '../../../store/slices/authentication';
 const initialState = {
   username: '',
   email: '',

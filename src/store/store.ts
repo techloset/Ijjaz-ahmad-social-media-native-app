@@ -1,20 +1,16 @@
 import {combineReducers, configureStore} from '@reduxjs/toolkit';
-import postSlice from './slices/postSlice';
-import usersData from './slices/usersData';
 import authentication from './slices/authentication';
-import signUp from './slices/signUp';
-import signIn from './slices/signIn';
-import {pickImage} from './slices/PickImage';
-import uploadPost from './slices/uploadPost';
+import pickImage from './slices/PickImage';
+import myPosts from './slices/myPosts';
+import myProfile from './slices/myProfile';
+import usersFeed from './slices/usersFeed';
 
 const rootReducer = combineReducers({
   auth: authentication,
-  signUp: signUp,
-  signIn: signIn,
-  posts: postSlice,
-  usersData: usersData,
+  myPosts: myPosts,
+  usersFeed: usersFeed,
   pickImage: pickImage,
-  uploadPost: uploadPost,
+  myProfile: myProfile,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

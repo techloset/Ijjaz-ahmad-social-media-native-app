@@ -3,10 +3,8 @@ import React from 'react';
 import {customStyles} from '../../screens/screenStyling';
 import {styles} from '../../constants/globalStyle';
 import {Colors} from '../../constants/colors';
-type PageNavigateBtnProps = {
-  onPress: () => void;
-  label: string;
-};
+import { PageNavigateBtnProps } from '../../constants/allTypes';
+
 export default function PageNavigateBtn({
   onPress,
   label,

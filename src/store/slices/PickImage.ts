@@ -1,11 +1,7 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
+import { PickImageProps } from '../../constants/allTypes';
 
-type PickImageProps = {
-  image: string;
-  type: string;
-  size: number;
-};
 
 export const fetchImageFromCamera = createAsyncThunk(
   'pickImage/fetchImageFromCamera',
@@ -65,7 +61,7 @@ const initialState: PickImageProps = {
   size: 0,
 };
 
-const pickImageSlice = createSlice({
+const pickImage = createSlice({
   name: 'pickImage',
   initialState,
   reducers: {
@@ -91,5 +87,5 @@ const pickImageSlice = createSlice({
       });
   },
 });
-export const {resetPickImage} = pickImageSlice.actions
-export const pickImage = pickImageSlice.reducer;
+export const {resetPickImage} = pickImage.actions
+export default  pickImage.reducer;

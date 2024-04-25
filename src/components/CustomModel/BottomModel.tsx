@@ -2,14 +2,7 @@ import React from 'react';
 import {View, Modal, TouchableOpacity} from 'react-native';
 import {Colors} from '../../constants/colors';
 import PageNavigateBtn from '../buttons/PageNavigateBtn';
-
-type BottomModelProps = {
-  isModalVisible: boolean;
-  onRequestClose: () => void;
-  onPress: () => void;
-  handleGallery: () => void;
-  handleCamra: () => void;
-};
+import { BottomModelProps } from '../../constants/allTypes';
 
 export default function BottomModel({
   isModalVisible,

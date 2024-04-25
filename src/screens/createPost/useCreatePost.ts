@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import {fetchPost} from '../../store/slices/postSlice';
+import {fetchPost, uploadPostFun} from '../../store/slices/myPosts';
 import {useDispatch, useSelector} from 'react-redux';
 import {AppDispatch, RootState} from '../../store/store';
 import {
@@ -7,7 +7,6 @@ import {
   fetchImageFromGallery,
   resetPickImage,
 } from '../../store/slices/PickImage';
-import {uploadPostFun} from '../../store/slices/uploadPost';
 const initialState = {description: ''};
 export default function useCreatePost() {
   const [isModalVisible, setModalVisible] = useState(false);

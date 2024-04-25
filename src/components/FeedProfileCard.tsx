@@ -3,11 +3,8 @@ import React from 'react';
 import {styles} from '../constants/globalStyle';
 import {ThreeDots, User} from '../constants/images';
 import {Colors} from '../constants/colors';
-type FeedProfileCardProps = {
-  uri: string | undefined;
-  username: string | undefined;
-  onPress: () => void;
-};
+import { FeedProfileCardProps } from '../constants/allTypes';
+
 export default function FeedProfileCard({
   uri,
   username,

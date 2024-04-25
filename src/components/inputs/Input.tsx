@@ -2,12 +2,8 @@ import React from 'react';
 import {TextInput} from 'react-native';
 import {styles} from '../../constants/globalStyle';
 import {Colors} from '../../constants/colors';
-type InputProps = {
-  placeholder: string;
-  value: string;
-  onChangeText: (value: string) => void;
-  type: 'text' | 'password';
-};
+import { InputProps } from '../../constants/allTypes';
+
 export default function Input({
   placeholder,
   value,

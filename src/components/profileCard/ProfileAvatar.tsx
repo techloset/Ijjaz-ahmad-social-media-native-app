@@ -3,14 +3,9 @@ import {View, Image} from 'react-native';
 import {styles} from '../../constants/globalStyle';
 import {User} from '../../constants/images';
 import TextLink from '../TextLink';
-import {userType} from '../../constants/allTypes';
+import {ProfileAvatarProps, userType} from '../../constants/allTypes';
 import {customStyles} from '../../screens/screenStyling';
 
-type ProfileAvatarProps = {
-  image?: string;
-  state: userType;
-  onPress: () => void;
-};
 
 const ProfileAvatar: React.FC<ProfileAvatarProps> = ({
   image,

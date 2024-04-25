@@ -4,10 +4,7 @@ import {customStyles} from '../../screens/screenStyling';
 import {User} from '../../constants/images';
 import {styles} from '../../constants/globalStyle';
 import {Colors} from '../../constants/colors';
-import { userType } from '../../constants/allTypes';
-type ProfileCardProps = {
-  state: userType;
-}
+import { ProfileCardProps} from '../../constants/allTypes';
 
 export default function ProfileCard({
   state

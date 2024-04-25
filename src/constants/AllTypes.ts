@@ -100,8 +100,102 @@ export type userDataState = {
   isLoading: boolean;
   isError: boolean;
 };
-export type rootStatePost = {
-  posts: postState;
-  usersData: usersDataState;
-  userData: userDataState;
+
+export type ActionButtonsRowProps ={
+  focusedText: string;
+  loading: boolean;
+  onCancel: () => void;
+  onEdit: () => void;
+  onSubmit: () => void;
+}
+
+export type EditCancelBtnProps= {
+  focusedText: string;
+  label: string;
+  onCancel: () => void;
+  onEdit: () => void;
+}
+
+export type PageNavigateBtnProps = {
+  label: string;
+  onPress: () => void;
+};
+export type PrimaryBtnProps = {
+  loading: boolean; 
+  label: string
+  onPress: () => void; 
+};
+export type BottomModelProps = {
+  isModalVisible: boolean;
+  onRequestClose: () => void;
+  onPress: () => void;
+  handleGallery: () => void;
+  handleCamra: () => void;
+};
+export type CustomModelProps = {
+  isModalVisible: boolean;
+  postId: string;
+  modalImg: string;
+  onPress: (item: any) => void;
+  onRequestClose: (item: any) => void;
+};
+
+export type FeedPostProps = {
+  description: string | undefined;
+  uri: string | undefined;
+};
+
+export type  InputProps = {
+  placeholder: string;
+  value: string;
+  onChangeText: (value: string) => void;
+  type: 'text' | 'password';
+};
+
+export type ProfileInputProps = {
+  placeholder: string;
+  label: string;
+  value: string | undefined;
+  onChangeText: (value: string) => void;
+  type: 'text' | 'password';
+};
+
+export type ProfileAvatarProps = {
+  image?: string;
+  state: userType;
+  onPress: () => void;
+};
+export type ProfileCardProps = {
+  state: userType;
+}
+
+export type FeedProfileCardProps = {
+  uri: string | undefined;
+  username: string | undefined;
+  onPress: () => void;
+};
+
+export type uploadPostFunProps = {
+  type: string;
+  image: string;
+  uid: string | undefined;
+  description: string;
+};
+
+export type UpdateProfileFunProps = {
+  type: string;
+  image: string;
+  uid: string | undefined;
+  state: userType;
+};
+export type uploadFileFunProps = {
+  type: string;
+  image: string;
+  uid: string | undefined;
+};
+
+export type PickImageProps = {
+  image: string;
+  type: string;
+  size: number;
 };

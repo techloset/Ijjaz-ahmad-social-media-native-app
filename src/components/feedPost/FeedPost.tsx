@@ -9,10 +9,8 @@ import {
   Telegram,
   ThreeDots,
 } from '../../constants/images';
-type FeedPostProps = {
-  description: string | undefined;
-  uri: string | undefined;
-};
+import { FeedPostProps } from '../../constants/allTypes';
+
 export default function FeedPost({description, uri}: FeedPostProps) {
   return (
     <>

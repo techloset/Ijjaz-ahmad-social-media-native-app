@@ -69,8 +69,8 @@ const initialState: usersDataState = {
   usersData: [],
   isError: false,
 };
-const usersData = createSlice({
-  name: 'usersData',
+const usersFeed = createSlice({
+  name: 'usersFeed',
   initialState,
   reducers: {},
   extraReducers: builder => {
@@ -89,4 +89,4 @@ const usersData = createSlice({
   },
 });
 
-export default usersData.reducer;
+export default usersFeed.reducer;

@@ -14,23 +14,18 @@ import {FIRE_BASE_COLLECTION} from '../../constants/collections';
 import {notify} from '../../constants/globalStyle';
 import {firebase} from '@react-native-firebase/storage';
 import {AppDispatch} from '../../store/store';
-import {fetchPost} from '../../store/slices/postSlice';
+import {fetchPost} from '../../store/slices/myPosts';
 import {useDispatch} from 'react-redux';
+import { CustomModelProps } from '../../constants/allTypes';
 
-type ModelProps = {
-  isModalVisible: boolean;
-  postId: string;
-  modalImg: string;
-  onPress: (item: any) => void;
-  onRequestClose: (item: any) => void;
-};
+
 export default function CustomModel({
   isModalVisible,
   postId,
   modalImg,
   onPress,
   onRequestClose,
-}: ModelProps) {
+}: CustomModelProps) {
   const dispatch = useDispatch<AppDispatch>();
   const [loading, setisLoading] = useState(false);
   const handleDelete = async () => {

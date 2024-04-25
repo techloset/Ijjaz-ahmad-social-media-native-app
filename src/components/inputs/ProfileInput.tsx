@@ -2,20 +2,15 @@ import React from 'react';
 import {Text, TextInput, View} from 'react-native';
 import {styles} from '../../constants/globalStyle';
 import {Colors} from '../../constants/colors';
-type InputProps = {
-  placeholder: string;
-  label: string;
-  value: string | undefined;
-  onChangeText: (value: string) => void;
-  type: 'text' | 'password';
-};
+import { ProfileInputProps } from '../../constants/allTypes';
+
 export default function ProfileInput({
   placeholder,
   value,
   onChangeText,
   type,
   label,
-}: InputProps) {
+}: ProfileInputProps) {
   return (
     <View style={[styles.flexRow, styles.horizantalyCenter]}>
       <View style={{width: '30%'}}>

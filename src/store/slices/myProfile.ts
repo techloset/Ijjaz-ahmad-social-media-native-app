@@ -4,18 +4,8 @@ import firestore from '@react-native-firebase/firestore';
 import {notify} from '../../constants/globalStyle';
 
 import {FIRE_BASE_COLLECTION} from '../../constants/collections';
-import {userType} from '../../constants/allTypes';
-type UpdateProfileFunProps = {
-  type: string;
-  image: string;
-  uid: string | undefined;
-  state: userType;
-};
-type uploadFileFunProps = {
-  type: string;
-  image: string;
-  uid: string | undefined;
-};
+import {UpdateProfileFunProps, uploadFileFunProps, userType} from '../../constants/allTypes';
+
 const uploadFileFun = async ({type, image, uid}: uploadFileFunProps) => {
   try {
     const fileType = type.split('/').pop();
@@ -53,24 +43,19 @@ export const UpdateProfileFun = createAsyncThunk(
 
 const initialState = {};
 
-const uploadPost = createSlice({
-  name: 'uploadPost',
+const myProfile = createSlice({
+  name: 'myProfile',
   initialState,
   reducers: {},
   extraReducers: builder => {
     builder.addCase(UpdateProfileFun.pending, state => {
-      // console.log("🚀 ~ builder.addCase ~ state: pending", state);
     });
     builder.addCase(UpdateProfileFun.fulfilled, (state, action) => {
-      // console.log("🚀 ~ builder.addCase ~ action:fulfilled", action);
-      // console.log("🚀 ~ builder.addCase ~ state:fulfilled", state);
     });
     builder.addCase(UpdateProfileFun.rejected, (state, action) => {
-      // console.log("🚀 ~ builder.addCase ~ action:rejected", action);
-      // console.log("🚀 ~ builder.addCase ~ state:rejected", state);
     });
   },
 });
 
-export const {} = uploadPost.actions;
-export default uploadPost.reducer;
+export const {} = myProfile.actions;
+export default myProfile.reducer;

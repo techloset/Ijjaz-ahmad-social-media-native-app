@@ -10,7 +10,7 @@ import {
   fetchImageFromGallery,
   resetPickImage,
 } from '../../store/slices/PickImage';
-import { UpdateProfileFun } from '../../store/slices/editProfile';
+import { UpdateProfileFun } from '../../store/slices/myProfile';
 type RootStackParamList = {
   MY_PROFILE: undefined;
 };

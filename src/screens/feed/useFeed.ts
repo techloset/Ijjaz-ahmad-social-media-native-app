@@ -1,12 +1,11 @@
 import {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {rootStatePost} from '../../constants/allTypes';
 import {AppDispatch, RootState} from '../../store/store';
-import {fetchUsersData} from '../../store/slices/usersData';
+import {fetchUsersData} from '../../store/slices/usersFeed';
 export default function useFeed() {
   const user = useSelector((state: RootState) => state.auth.user);
   const usersData = useSelector(
-    (state: rootStatePost) => state.usersData.usersData,
+    (state: RootState) => state.usersFeed.usersData,
   );
 
   const dispatch = useDispatch<AppDispatch>();

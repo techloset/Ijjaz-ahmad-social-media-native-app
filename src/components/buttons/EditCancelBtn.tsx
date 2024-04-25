@@ -2,18 +2,14 @@ import {Text, TouchableOpacity} from 'react-native';
 import React from 'react';
 import {styles} from '../../constants/globalStyle';
 import {Colors} from '../../constants/colors';
-interface ActionButtonsRowProps {
-  focusedText: string;
-  label: string;
-  onCancel: () => void;
-  onEdit: () => void;
-}
+import { EditCancelBtnProps } from '../../constants/allTypes';
+
 export default function EditCancelBtn({
   label,
   focusedText,
   onCancel,
   onEdit,
-}: ActionButtonsRowProps) {
+}: EditCancelBtnProps) {
   return (
     <>
       <TouchableOpacity onPress={onCancel}>
